@@ -14,4 +14,5 @@ use HyperfPlus\Route\Route;
  */
 use Hyperf\HttpServer\Router\Router;
 
-Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'HyperfPlus\Controller\IndexController@handle');
+// 视图渲染
+Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\View\Index\Action\IndexAction@index');
