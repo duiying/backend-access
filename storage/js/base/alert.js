@@ -1,4 +1,4 @@
-var alert = {
+alert = {
     success : function (msg = '操作成功！') {
         toastr.success(msg);
     },
