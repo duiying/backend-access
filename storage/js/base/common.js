@@ -23,6 +23,13 @@ function handleDeleteCallback(callback)
     })
 }
 
+function handleSearchCallback(callback)
+{
+    NProgress.start();
+    callback();
+    NProgress.done();
+}
+
 function renderPage(data)
 {
     if (data !== false && data.total != 0) {
@@ -105,6 +112,9 @@ function renderPage(data)
         $('.card-footer > .pagination > .page-item > .page-link').css('cursor', 'pointer').css('color', '#007bff');
         $('.card-footer > .pagination > .disabled > .page-link').css('color', '#000');
         $('.card-footer > .pagination > .active > .page-link').css('color', '#fff');
+    } else {
+        $('#pagination-total').html('总共&nbsp;&nbsp;<span style="color:#007bff;">' + 0 + '</span>&nbsp;&nbsp;条数据</div>');
+        $('#pagination > .pagination').html('');
     }
 }
 

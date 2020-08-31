@@ -16,4 +16,8 @@ function updateUser(data = {}) {
     return request.post('v1/user/update', data);
 }
 
+function updateUserField(data = {}) {
+    return request.post('v1/user/update_field', data);
+}
+
 /******************** 管理员 API end ***********************************************************************************/

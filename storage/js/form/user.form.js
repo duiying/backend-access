@@ -35,6 +35,7 @@ function assembleSearchParam(p)
     var searchParam = {
         p       : DEFAULT_P,
         size    : DEFAULT_SIZE,
+        status  : 1,
     };
     if (p !== 0) searchParam.p = p;
 

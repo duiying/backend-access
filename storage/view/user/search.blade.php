@@ -68,7 +68,7 @@
          *
          * @param param
          */
-        function renderUserList(param = {p : DEFAULT_P, size : DEFAULT_SIZE})
+        function renderUserList(param = {p : DEFAULT_P, size : DEFAULT_SIZE, status : 1})
         {
             var data = searchUser(param);
             renderList('user-list', data, ['id', 'name', 'email', 'mobile', 'ctime', 'mtime', 'position'], {'update' : true, 'delete' : true, 'update_url' : '/view/user/update'})
@@ -82,18 +82,20 @@
          */
         function handleSearch(p = 1)
         {
-            NProgress.start();
-
-            var searchParam = assembleSearchParam(p);
-            renderUserList(searchParam);
-
-            NProgress.done();
+            handleSearchCallback(function () {
+                var searchParam = assembleSearchParam(p);
+                renderUserList(searchParam);
+            });
         }
 
         function handleDelete(id)
         {
             handleDeleteCallback(function () {
-
+                var param   = {id : id, status : -1}
+                var data    = updateUserField(param)
+                if (data !== false) {
+                    renderUserList();
+                }
             });
         }
     </script>

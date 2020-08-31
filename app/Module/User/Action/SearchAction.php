@@ -32,7 +32,8 @@ class SearchAction extends AbstractController
         'email'         => 'string',
         'mobile'        => 'string',
         'position'      => 'string',
-        'password'      => 'string'
+        'password'      => 'string',
+        'status'        => 'integer',
     ];
 
     public function handle(RequestInterface $request, Response $response)
