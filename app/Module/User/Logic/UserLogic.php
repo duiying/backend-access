@@ -49,6 +49,17 @@ class UserLogic
     }
 
     /**
+     * 更新字段
+     *
+     * @param $requestData
+     * @return mixed
+     */
+    public function updateField($requestData)
+    {
+        return $this->passportServiceRpc->updateUserField($requestData);
+    }
+
+    /**
      * 详情
      *
      * @param $requestData
