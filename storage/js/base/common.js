@@ -1,6 +1,28 @@
 const DEFAULT_P         = 1;
 const DEFAULT_SIZE      = 2;
 
+function closeModal()
+{
+    $('#modal-template').css('display', 'none');
+    $("#modal-template").css('background-color', '');
+}
+
+function showModal()
+{
+    $('#modal-template').css('display', 'block');
+    $("#modal-template").css('background-color', 'rgba(0,0,0,.6)');
+}
+
+function handleDeleteCallback(callback)
+{
+    showModal();
+
+    $('#doConfirmDelete').bind('click', function () {
+        callback();
+        closeModal();
+    })
+}
+
 function renderPage(data)
 {
     if (data !== false && data.total != 0) {
@@ -111,7 +133,7 @@ function renderList(id, data, columns, options = {'update' : false, 'delete' : f
                 html += '<td>';
 
                 if (options.update === true) html += '<a href="' + options.update_url + '?id=' + list[i].id + '"><i class="fas fa-edit"></i></a>';
-                if (options.delete === true) html += '<a href="/view/user/update" class="ml-2"><i class="fas fa-trash"></i></a>';
+                if (options.delete === true) html += '<a href="javascript:;" class="ml-2" onclick="handleDelete(' + list[i].id + ')"><i class="fas fa-trash"></i></a>';
 
                 html += '</td>';
             }

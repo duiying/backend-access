@@ -36,6 +36,7 @@
         </div>
         <!-- /.content-header -->
 
+        <!-- /.modal -->
         @yield('content')
         <!--  for pjax do not delete this line end !!!  -->
     </div>
@@ -44,6 +45,23 @@
     <!-- 底部导航 begin -->
     @include('layouts.footer')
     <!-- 底部导航 end -->
+
+    <div class="modal fade show" id="modal-template" style="display: none;" aria-modal="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p class="text-center"><i class="fas fa-exclamation-circle" style="color:#f8bb86;font-size: 2rem;"></i></p>
+                    <p class="text-center" style="font-size: 1rem;">确定要删除吗？</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" onclick='closeModal()'>取消</button>
+                    <button id="doConfirmDelete" type="button" class="btn btn-primary btn-sm">确认</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->n
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 </div>
 <!-- ./wrapper -->
 </body>

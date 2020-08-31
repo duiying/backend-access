@@ -60,6 +60,9 @@
     </div>
     <!-- /.card -->
     <script type="text/javascript">
+        // 首次加载页面渲染列表
+        renderUserList();
+
         /**
          * 渲染列表
          *
@@ -87,8 +90,12 @@
             NProgress.done();
         }
 
-        // 首次加载页面渲染列表
-        renderUserList();
+        function handleDelete(id)
+        {
+            handleDeleteCallback(function () {
+
+            });
+        }
     </script>
 @endsection
 
