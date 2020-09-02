@@ -6,7 +6,7 @@
 function assemblePermissionFormParam(fromUpdate = false)
 {
     var name    = $('input[name=name]').val();
-    var url     = $('input[name=url]').val();
+    var url     = $('textarea[name=url]').val();
     var sort    = $('input[name=sort]').val();
 
     var retFromParam = {

@@ -27,7 +27,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">路由<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
-                                <input type="text" name="url" class="form-control" placeholder="路由（多个路由之间请用英文分号 ; 隔开）">
+                                <textarea type="text" name="url" class="form-control" placeholder="路由（多个路由之间请用英文分号 ; 隔开）"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -52,7 +52,10 @@
         var data = findPermission({id : $('input[name=id]').val()});
 
         // 渲染表单数据
-        renderUpdateForm(data, ['name', 'url', 'sort']);
+        renderUpdateForm(data, ['name', 'sort']);
+        if (data !== false) {
+            $('textarea[name=url]').val(data.url);
+        }
 
         function handleSubmit()
         {

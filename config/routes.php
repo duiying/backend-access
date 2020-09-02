@@ -30,6 +30,10 @@ Router::addGroup('/view/',function () {
     Router::get('permission/search','App\View\Permission\Action\SearchAction@handle');       // 权限列表
     Router::get('permission/create', 'App\View\Permission\Action\CreateAction@handle');      // 权限创建
     Router::get('permission/update','App\View\Permission\Action\UpdateAction@handle');       // 权限更新
+
+    Router::get('role/search','App\View\Role\Action\SearchAction@handle');                   // 角色列表
+    Router::get('role/create', 'App\View\Role\Action\CreateAction@handle');                  // 角色创建
+    Router::get('role/update','App\View\Role\Action\UpdateAction@handle');                   // 角色更新
 }, ['middleware' => [PjaxMiddleware::class]]);
 
 /**
@@ -55,4 +59,10 @@ Router::addGroup('/v1/',function () {
     Router::post('permission/update', Route::decoration('Permission\Action\UpdateAction'));             // 权限更新
     Router::get('permission/find', Route::decoration('Permission\Action\FindAction'));                  // 权限详情
     Router::post('permission/update_field', Route::decoration('Permission\Action\UpdateFieldAction'));  // 权限更新字段
+
+    Router::get('role/search', Route::decoration('Role\Action\SearchAction'));                          // 角色列表
+    Router::post('role/create', Route::decoration('Role\Action\CreateAction'));                         // 角色创建
+    Router::post('role/update', Route::decoration('Role\Action\UpdateAction'));                         // 角色更新
+    Router::get('role/find', Route::decoration('Role\Action\FindAction'));                              // 角色详情
+    Router::post('role/update_field', Route::decoration('Role\Action\UpdateFieldAction'));              // 角色更新字段
 }, ['middleware' => [CorsMiddleware::class, ValidationMiddleware::class]]);
