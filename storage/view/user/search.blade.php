@@ -3,6 +3,7 @@
     <li class="breadcrumb-item active">管理员</li>
 @endsection
 @section('content')
+    <script src="/storage/js/validate/user.validate.js"></script>
     <script src="/storage/js/form/user.form.js"></script>
 
     <div class="card">
@@ -83,7 +84,7 @@
         function handleSearch(p = 1)
         {
             handleSearchCallback(function () {
-                var searchParam = assembleSearchParam(p);
+                var searchParam = assembleUserSearchParam(p);
                 renderUserList(searchParam);
             });
         }

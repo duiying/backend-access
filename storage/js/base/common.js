@@ -17,10 +17,11 @@ function handleDeleteCallback(callback)
 {
     showModal();
 
-    $('#doConfirmDelete').bind('click', function () {
+    // unbind 是为了 FIX 回调被多次执行的 BUG
+    $('#doConfirmDelete').unbind('click').click(function () {
         callback();
         closeModal();
-    })
+    });
 }
 
 function handleSearchCallback(callback)
@@ -125,6 +126,21 @@ function renderUpdateForm(data, columns)
             $('input[name=' + columns[i] + ']').val(data[columns[i]]);
         }
     }
+}
+
+function renderSelect(id, list, valueField, contentField, defaultOption = '')
+{
+    $(function () {$('.select2').select2()})
+
+    var selectHtml = defaultOption;
+
+    for (var i = 0; i < list.length; i++) {
+        selectHtml += '<option value="' + list[i][valueField] + '">';
+        selectHtml += list[i][contentField];
+        selectHtml += '</option>';
+    }
+
+    $('#' + id).html(selectHtml);
 }
 
 function renderList(id, data, columns, options = {'update' : false, 'delete' : false, 'update_url' : '/view/user/update'})

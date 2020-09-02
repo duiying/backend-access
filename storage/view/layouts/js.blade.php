@@ -9,6 +9,8 @@
 <script src="/storage/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE -->
 <script src="/storage/AdminLTE/dist/js/adminlte.js"></script>
+<!-- Select2 -->
+<script src="/storage/AdminLTE/plugins/select2/js/select2.full.min.js"></script>
 
 <!-- OPTIONAL SCRIPTS -->
 <script src="/storage/AdminLTE/plugins/chart.js/Chart.min.js"></script>
@@ -18,3 +20,4 @@
 <script src="/storage/js/base/request.js?r=<?php echo mt_rand(1, 100000000) ?>"></script>
 <script src="/storage/js/base/common.js?r=<?php echo mt_rand(1, 100000000) ?>"></script>
 <script src="/storage/js/api/api.js?r=<?php echo mt_rand(1, 100000000) ?>"></script>
+

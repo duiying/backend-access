@@ -75,7 +75,7 @@
         function handleSubmit()
         {
             if (validateParam('user-update')) {
-                var param   = assembleFormParam(true)
+                var param   = assembleUserFormParam(true)
                 var data    = updateUser(param)
                 if (data !== false) {
                     pjaxToUrl('/view/user/search');

@@ -3,7 +3,7 @@
  *
  * @returns {{password: (jQuery|string|undefined), name: (jQuery|string|undefined), mobile: (jQuery|string|undefined), position: (jQuery|string|undefined), email: (jQuery|string|undefined)}}
  */
-function assembleFormParam(fromUpdate = false)
+function assembleUserFormParam(fromUpdate = false)
 {
     var name        = $('input[name=name]').val();
     var mobile      = $('input[name=mobile]').val();
@@ -26,7 +26,7 @@ function assembleFormParam(fromUpdate = false)
     return retFromParam;
 }
 
-function assembleSearchParam(p)
+function assembleUserSearchParam(p)
 {
     var name        = $('input[name=name]').val();
     var mobile      = $('input[name=mobile]').val();

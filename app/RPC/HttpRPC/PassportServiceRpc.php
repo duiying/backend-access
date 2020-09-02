@@ -64,4 +64,47 @@ class PassportServiceRpc extends HttpRPC
             'uri'       => 'v1/user/find',
         ]);
     }
+
+    public function searchMenu($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/menu/search',
+        ]);
+    }
+
+    public function createMenu($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/menu/create',
+            'method'    => Constant::METHOD_POST
+        ]);
+    }
+
+    public function updateMenu($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/menu/update',
+            'method'    => Constant::METHOD_POST
+        ]);
+    }
+
+    public function updateMenuField($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/menu/update_field',
+            'method'    => Constant::METHOD_POST
+        ]);
+    }
+
+    public function findMenu($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/menu/find',
+        ]);
+    }
 }

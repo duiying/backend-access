@@ -37,6 +37,7 @@ request = {
             dataType    : 'json',
             async       : false,
             success     : function(resp) {
+                console.log(resp)
                 if (resp.code !== 0) {
                     if (resp.msg !== '') {
                         alert.error(resp.msg);

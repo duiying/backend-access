@@ -10,3 +10,12 @@
 <link rel="stylesheet" href="/storage/AdminLTE/plugins/toastr/toastr.min.css">
 <!-- nprogress -->
 <link rel="stylesheet" href="/storage/css/base/nprogress.css">
+<!-- Select2 -->
+<link rel="stylesheet" href="/storage/AdminLTE/plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="/storage/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+<style>
+    /* 修复 select 多选框高度问题 */
+    .select2-container .select2-selection--single {height: 38px;}
+    .select2-container--default .select2-selection--single .select2-selection__arrow {height: 38px;}
+</style>

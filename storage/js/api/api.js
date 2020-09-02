@@ -21,3 +21,27 @@ function updateUserField(data = {}) {
 }
 
 /******************** 管理员 API end ***********************************************************************************/
+
+/******************** 菜单 API begin ***********************************************************************************/
+
+function searchMenu(data = {}) {
+    return request.get('v1/menu/search', data);
+}
+
+function createMenu(data = {}) {
+    return request.post('v1/menu/create', data);
+}
+
+function updateMenu(data = {}) {
+    return request.post('v1/menu/update', data);
+}
+
+function findMenu(data = {}) {
+    return request.get('v1/menu/find', data);
+}
+
+function updateMenuField(data = {}) {
+    return request.post('v1/menu/update_field', data);
+}
+
+/******************** 菜单 API end *************************************************************************************/

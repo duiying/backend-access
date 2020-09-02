@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('header')
-    <li class="breadcrumb-item"><a href="/view/user/search">管理员</a></li>
+    <li class="breadcrumb-item"><a href="/view/menu/search">菜单</a></li>
     <li class="breadcrumb-item active">创建</li>
 @endsection
 @section('content')
-    <script src="/storage/js/validate/user.validate.js"></script>
-    <script src="/storage/js/form/user.form.js"></script>
+    <script src="/storage/js/validate/menu.validate.js"></script>
+    <script src="/storage/js/form/menu.form.js"></script>
 
     <div class="row">
         <div class="col-12">
@@ -14,42 +14,37 @@
             <div class="card card-info">
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" id="user-create" onsubmit="return false;">
+                <form class="form-horizontal" id="menu-create" onsubmit="return false;">
                     <div class="card-body">
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">姓名</label>
+                            <label class="col-sm-2 col-form-label">上级<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
-                                <input type="text" name="name" class="form-control" placeholder="真实姓名">
+                                <select class="form-control select2" id="pid-select" name="pid">
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">手机</label>
+                            <label class="col-sm-2 col-form-label">标题<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
-                                <input type="text" name="mobile" class="form-control" placeholder="手机号">
+                                <input type="text" name="name" class="form-control" placeholder="标题">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">邮箱</label>
+                            <label class="col-sm-2 col-form-label">图标<span class="text-danger">*</span>（<a href="http://www.fontawesome.com.cn/faicons/" target="_blank">fontawesome</a>）</label>
                             <div class="col-sm-10">
-                                <input type="email" name="email" class="form-control" placeholder="公司邮箱">
+                                <input type="text" name="icon" class="form-control" placeholder="图标，例如：fa fa-bars">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">职位</label>
+                            <label class="col-sm-2 col-form-label">路由<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
-                                <input type="text" name="position" class="form-control" placeholder="职位">
+                                <input type="text" name="url" class="form-control" placeholder="路由">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">密码</label>
+                            <label class="col-sm-2 col-form-label">排序（升序）</label>
                             <div class="col-sm-10">
-                                <input type="password" name="password" class="form-control" placeholder="密码">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">确认密码</label>
-                            <div class="col-sm-10">
-                                <input type="password" name="rePassword" class="form-control" placeholder="确认密码">
+                                <input type="text" name="sort" class="form-control" placeholder="排序" value="99">
                             </div>
                         </div>
                     </div>
@@ -65,13 +60,16 @@
     </div>
 
     <script type="text/javascript">
+        // 渲染下拉选择
+        renderMenuPidSelect()
+
         function handleSubmit()
         {
-            if (validateParam('user-create')) {
-                var param   = assembleUserFormParam()
-                var data    = createUser(param)
+            if (validateMenuParam('menu-create')) {
+                var param   = assembleMenuFormParam()
+                var data    = createMenu(param)
                 if (data !== false) {
-                    pjaxToUrl('/view/user/search');
+                    pjaxToUrl('/view/menu/search');
                 }
             }
         }
