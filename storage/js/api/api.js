@@ -45,3 +45,27 @@ function updateMenuField(data = {}) {
 }
 
 /******************** 菜单 API end *************************************************************************************/
+
+/******************** 权限 API begin ***********************************************************************************/
+
+function searchPermission(data = {}) {
+    return request.get('v1/permission/search', data);
+}
+
+function createPermission(data = {}) {
+    return request.post('v1/permission/create', data);
+}
+
+function updatePermission(data = {}) {
+    return request.post('v1/permission/update', data);
+}
+
+function findPermission(data = {}) {
+    return request.get('v1/permission/find', data);
+}
+
+function updatePermission(data = {}) {
+    return request.post('v1/permission/update_field', data);
+}
+
+/******************** 权限 API end *************************************************************************************/

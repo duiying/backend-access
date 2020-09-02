@@ -1,22 +1,22 @@
 <?php
 
-namespace App\View\Menu\Action;
+namespace App\Module\Permission\Action;
 
+use HyperfPlus\Util\Util;
+use HyperfPlus\Controller\AbstractController;
+use App\Module\Permission\Logic\PermissionLogic;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
-use Hyperf\Validation\Contract\ValidatorFactoryInterface;
-use Hyperf\View\RenderInterface;
-use HyperfPlus\Controller\AbstractController;
 use HyperfPlus\Http\Response;
-use HyperfPlus\Util\Util;
+use Hyperf\Validation\Contract\ValidatorFactoryInterface;
 
-class UpdateAction extends AbstractController
+class FindAction extends AbstractController
 {
     /**
      * @Inject()
-     * @var RenderInterface
+     * @var PermissionLogic
      */
-    private $render;
+    private $logic;
 
     /**
      * @Inject()
@@ -25,7 +25,7 @@ class UpdateAction extends AbstractController
     public $validationFactory;
 
     private $rules = [
-        'id' => 'required|integer',
+        'id' => 'required|integer'
     ];
 
     public function handle(RequestInterface $request, Response $response)
@@ -34,6 +34,8 @@ class UpdateAction extends AbstractController
         $requestData = $request->all();
         $this->validationFactory->make($requestData, $this->rules)->validate();
         $requestData = Util::sanitize($requestData, $this->rules);
-        return $this->render->render('menu/update', ['id' => $requestData['id']]);
+
+        $res = $this->logic->find($requestData);
+        return $response->success($res);
     }
 }

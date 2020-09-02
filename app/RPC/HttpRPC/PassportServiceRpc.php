@@ -107,4 +107,47 @@ class PassportServiceRpc extends HttpRPC
             'uri'       => 'v1/menu/find',
         ]);
     }
+
+    public function searchPermission($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/permission/search',
+        ]);
+    }
+
+    public function createPermission($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/permission/create',
+            'method'    => Constant::METHOD_POST
+        ]);
+    }
+
+    public function updatePermission($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/permission/update',
+            'method'    => Constant::METHOD_POST
+        ]);
+    }
+
+    public function updatePermissionField($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/permission/update_field',
+            'method'    => Constant::METHOD_POST
+        ]);
+    }
+
+    public function findPermission($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/permission/find',
+        ]);
+    }
 }

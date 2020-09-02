@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Menu\Action;
+namespace App\View\Permission\Action;
 
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
@@ -34,6 +34,6 @@ class UpdateAction extends AbstractController
         $requestData = $request->all();
         $this->validationFactory->make($requestData, $this->rules)->validate();
         $requestData = Util::sanitize($requestData, $this->rules);
-        return $this->render->render('menu/update', ['id' => $requestData['id']]);
+        return $this->render->render('permission/update', ['id' => $requestData['id']]);
     }
 }
