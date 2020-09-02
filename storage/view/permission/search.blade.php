@@ -6,8 +6,8 @@
     <style>
         .none {display: none;}
     </style>
-    <script src="/storage/js/validate/menu.validate.js"></script>
-    <script src="/storage/js/form/menu.form.js"></script>
+    <script src="/storage/js/validate/permission.validate.js"></script>
+    <script src="/storage/js/form/permission.form.js"></script>
     <div class="card">
         <div class="card-header">
             <form id="user-search" onsubmit="return false;">
@@ -25,91 +25,65 @@
                 <tr>
                     <th style="width: 50px">ID</th>
                     <th style="width: 50px">排序</th>
-                    <th style="width: 150px">标题</th>
-                    <th style="width: 150px">图标</th>
+                    <th style="width: 50px">名称</th>
                     <th style="width: 150px">路由</th>
                     <th style="width: 150px">操作</th>
                 </tr>
                 </thead>
-                <tbody id="menu-list">
+                <tbody id="permission-list">
                 </tbody>
             </table>
         </div>
         <!-- /.card-body -->
+
+        <div class="card-footer clearfix" id="pagination">
+            <div class="float-left" id="pagination-total"></div>
+            <ul class="pagination pagination-sm m-0 float-right">
+
+            </ul>
+        </div>
     </div>
     <!-- /.card -->
     <script type="text/javascript">
-        /**
-         * 渲染菜单列表
-         */
-        function renderMenuList()
+        function renderPermissionList()
         {
-            var data = searchMenu();
-
+            var data = searchPermission();
             if (data !== false) {
-                menuList = data.list;
-
+                $('#permission-list').html('');
                 var listHtml = '';
-
-                for (var i = 0; i < menuList.length; i++) {
+                var list = data.list;
+                for (var i = 0; i < list.length; i++) {
                     listHtml += '<tr>';
-                    listHtml += '<td>' + menuList[i].id + '</td>';
-                    listHtml += '<td>' + menuList[i].sort + '</td>';
-                    listHtml += '<td class="menu-down" isFold="1" value="' + menuList[i].id + '"><i class="fas fa-folder-plus mr-1 menu-folder-icon' + menuList[i].id + '"></i>' + menuList[i].name + '</td>';
-                    listHtml += '<td>' + '<i class="mr-2 ' + menuList[i].icon + '"></i>' + menuList[i].icon + '</td>';
-                    listHtml += '<td>' + menuList[i].url + '</td>';
+                    listHtml += '<td>' + list[i].id + '</td>';
+                    listHtml += '<td>' + list[i].sort + '</td>';
+                    listHtml += '<td>' + list[i].name + '</td>';
                     listHtml += '<td>';
-                    listHtml += '<a href="/view/menu/update?id=' + menuList[i].id + '"><i class="fas fa-edit"></i></a>';
-                    listHtml += '<a href="javascript:;" class="ml-2" onclick="handleMenuDelete(' + menuList[i].id + ')"><i class="fas fa-trash"></i></a>';
+                    for (var j = 0; j < list[i].url_list.length; j++) {
+                        listHtml += '<code>' + list[i].url_list[j] + '</code>'
+                        listHtml += '<br>';
+                    }
+
+                    listHtml += '</td>';
+                    listHtml += '<td>';
+                    listHtml += '<a href="/view/permission/update?id=' + list[i].id + '"><i class="fas fa-edit"></i></a>';
+                    listHtml += '<a href="javascript:;" class="ml-2" onclick="handlePermissionDelete(' + list[i].id + ')"><i class="fas fa-trash"></i></a>';
                     listHtml += '</td>';
                     listHtml += '</tr>';
-
-                    for (var j = 0; j < menuList[i].sub_menu_list.length; j++) {
-                        listHtml += '<tr class="none sub-menu-' + menuList[i].id + '">';
-                        listHtml += '<td>' + menuList[i].sub_menu_list[j].id + '</td>';
-                        listHtml += '<td>' + menuList[i].sub_menu_list[j].sort + '</td>';
-                        listHtml += '<td><span class="ml-4">' + menuList[i].sub_menu_list[j].name + '</span></td>';
-                        listHtml += '<td>' + '<i class="mr-2 ' + menuList[i].sub_menu_list[j].icon + '"></i>' + menuList[i].sub_menu_list[j].icon + '</td>';
-                        listHtml += '<td>' + menuList[i].sub_menu_list[j].url + '</td>';
-                        listHtml += '<td>';
-                        listHtml += '<a href="/view/menu/update?id=' + menuList[i].sub_menu_list[j].id + '"><i class="fas fa-edit"></i></a>';
-                        listHtml += '<a href="javascript:;" class="ml-2" onclick="handleMenuDelete(' + menuList[i].sub_menu_list[j].id + ')"><i class="fas fa-trash"></i></a>';
-                        listHtml += '</td>';
-                        listHtml += '</tr>';
-                    }
                 }
-
-                $('#menu-list').html(listHtml);
+                $('#permission-list').html(listHtml);
             }
+            renderPage(data);
         }
 
-        renderMenuList();
+       renderPermissionList();
 
-        // 折叠效果
-        $('.menu-down').css('cursor', 'pointer');
-        $('.menu-down').click(function () {
-            var pid = $(this).attr('value');
-
-            if ($(this).attr('isFold') == "1") {
-                $('.sub-menu-' + pid).removeClass('none');
-                $(this).attr('isFold', "0");
-                $('.menu-folder-icon' + pid).removeClass('fa-folder-plus');
-                $('.menu-folder-icon' + pid).addClass('fa-folder-minus');
-            } else {
-                $('.sub-menu-' + pid).addClass('none');
-                $(this).attr('isFold', "1");
-                $('.menu-folder-icon' + pid).removeClass('fa-folder-minus');
-                $('.menu-folder-icon' + pid).addClass('fa-folder-plus');
-            }
-        });
-
-        function handleMenuDelete(id)
+        function handlePermissionDelete(id)
         {
             handleDeleteCallback(function () {
                 var param   = {id : id, status : -1}
-                var data    = updateMenuField(param)
+                var data    = updatePermissionField(param)
                 if (data !== false) {
-                    renderMenuList();
+                    renderPermissionList();
                 }
             });
         }

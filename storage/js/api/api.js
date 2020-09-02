@@ -64,7 +64,7 @@ function findPermission(data = {}) {
     return request.get('v1/permission/find', data);
 }
 
-function updatePermission(data = {}) {
+function updatePermissionField(data = {}) {
     return request.post('v1/permission/update_field', data);
 }
 

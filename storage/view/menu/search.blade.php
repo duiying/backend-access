@@ -25,8 +25,8 @@
                 <tr>
                     <th style="width: 50px">ID</th>
                     <th style="width: 50px">排序</th>
-                    <th style="width: 150px">标题</th>
-                    <th style="width: 150px">图标</th>
+                    <th style="width: 50px">标题</th>
+                    <th style="width: 50px">图标</th>
                     <th style="width: 150px">路由</th>
                     <th style="width: 150px">操作</th>
                 </tr>

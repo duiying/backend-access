@@ -25,7 +25,8 @@ class UpdateFieldAction extends AbstractController
     public $validationFactory;
 
     private $rules = [
-        'id' => 'required|integer'
+        'id'        => 'required|integer',
+        'status'    => 'integer',
     ];
 
     public function handle(RequestInterface $request, Response $response)
@@ -34,8 +35,6 @@ class UpdateFieldAction extends AbstractController
         $requestData = $request->all();
         $this->validationFactory->make($requestData, $this->rules)->validate();
         $requestData = Util::sanitize($requestData, $this->rules);
-
-        $requestData['mtime'] = date('Y-m-d H:i:s');
 
         $res = $this->logic->updateField($requestData);
         return $response->success($res);

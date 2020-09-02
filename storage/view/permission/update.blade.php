@@ -4,8 +4,8 @@
     <li class="breadcrumb-item active">更新</li>
 @endsection
 @section('content')
-    <script src="/storage/js/validate/menu.validate.js"></script>
-    <script src="/storage/js/form/menu.form.js"></script>
+    <script src="/storage/js/validate/permission.validate.js"></script>
+    <script src="/storage/js/form/permission.form.js"></script>
 
     <input name="id" type="hidden" value="{{ $id }}">
 
@@ -16,31 +16,18 @@
             <div class="card card-info">
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" id="menu-update" onsubmit="return false;">
+                <form class="form-horizontal" id="permission-update" onsubmit="return false;">
                     <div class="card-body">
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">上级<span class="text-danger">*</span></label>
+                            <label class="col-sm-2 col-form-label">名称<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
-                                <select class="form-control select2" id="pid-select" name="pid">
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">标题<span class="text-danger">*</span></label>
-                            <div class="col-sm-10">
-                                <input type="text" name="name" class="form-control" placeholder="标题">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">图标<span class="text-danger">*</span>（<a href="http://www.fontawesome.com.cn/faicons/" target="_blank">fontawesome</a>）</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="icon" class="form-control" placeholder="图标，例如：fa fa-bars">
+                                <input type="text" name="name" class="form-control" placeholder="名称">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">路由<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
-                                <input type="text" name="url" class="form-control" placeholder="路由">
+                                <input type="text" name="url" class="form-control" placeholder="路由（多个路由之间请用英文分号 ; 隔开）">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -62,25 +49,18 @@
     </div>
 
     <script type="text/javascript">
-        // 渲染下拉选择
-        renderMenuPidSelect()
-
-        var data = findMenu({id : $('input[name=id]').val()});
+        var data = findPermission({id : $('input[name=id]').val()});
 
         // 渲染表单数据
-        renderUpdateForm(data, ['name', 'icon', 'url', 'sort']);
-        // 渲染下拉选择
-        if (data !== false) {
-            $('select[name=pid] > option[value=' + data.pid + ']').attr('selected', true);
-        }
+        renderUpdateForm(data, ['name', 'url', 'sort']);
 
         function handleSubmit()
         {
-            if (validateMenuParam('menu-update')) {
-                var param   = assembleMenuFormParam(true)
-                var data    = updateMenu(param)
+            if (validatePermissionParam('permission-update')) {
+                var param   = assemblePermissionFormParam(true)
+                var data    = updatePermission(param)
                 if (data !== false) {
-                    pjaxToUrl('/view/menu/search');
+                    pjaxToUrl('/view/permission/search');
                 }
             }
         }

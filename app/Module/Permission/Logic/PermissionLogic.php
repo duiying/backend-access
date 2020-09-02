@@ -31,7 +31,7 @@ class PermissionLogic
 
     public function updateField($requestData)
     {
-        return $this->passportServiceRpc->updatePermission($requestData);
+        return $this->passportServiceRpc->updatePermissionField($requestData);
     }
 
     public function find($requestData)

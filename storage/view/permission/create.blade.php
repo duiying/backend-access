@@ -14,7 +14,7 @@
             <div class="card card-info">
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" id="menu-create" onsubmit="return false;">
+                <form class="form-horizontal" id="permission-create" onsubmit="return false;">
                     <div class="card-body">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">名称<span class="text-danger">*</span></label>
@@ -49,7 +49,7 @@
     <script type="text/javascript">
         function handleSubmit()
         {
-            if (validatePermissionParam('menu-create')) {
+            if (validatePermissionParam('permission-create')) {
                 var param   = assemblePermissionFormParam()
                 var data    = createPermission(param)
                 if (data !== false) {

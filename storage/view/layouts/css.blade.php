@@ -18,4 +18,12 @@
     /* 修复 select 多选框高度问题 */
     .select2-container .select2-selection--single {height: 38px;}
     .select2-container--default .select2-selection--single .select2-selection__arrow {height: 38px;}
+
+    code {
+        padding: 2px 4px;
+        font-size: 90%;
+        color: #c7254e;
+        background-color: #f9f2f4;
+        border-radius: 4px;
+    }
 </style>
