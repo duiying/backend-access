@@ -69,3 +69,27 @@ function updatePermissionField(data = {}) {
 }
 
 /******************** 权限 API end *************************************************************************************/
+
+/******************** 角色 API begin ***********************************************************************************/
+
+function searchRole(data = {}) {
+    return request.get('v1/role/search', data);
+}
+
+function createRole(data = {}) {
+    return request.post('v1/role/create', data);
+}
+
+function updateRole(data = {}) {
+    return request.post('v1/role/update', data);
+}
+
+function findRole(data = {}) {
+    return request.get('v1/role/find', data);
+}
+
+function updateuRoleField(data = {}) {
+    return request.post('v1/role/update_field', data);
+}
+
+/******************** 角色 API end *************************************************************************************/

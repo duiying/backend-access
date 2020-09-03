@@ -150,4 +150,47 @@ class PassportServiceRpc extends HttpRPC
             'uri'       => 'v1/permission/find',
         ]);
     }
+
+    public function searchRole($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/role/search',
+        ]);
+    }
+
+    public function createRole($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/role/create',
+            'method'    => Constant::METHOD_POST
+        ]);
+    }
+
+    public function updateRole($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/role/update',
+            'method'    => Constant::METHOD_POST
+        ]);
+    }
+
+    public function updateRoleField($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/role/update_field',
+            'method'    => Constant::METHOD_POST
+        ]);
+    }
+
+    public function findRole($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/role/find',
+        ]);
+    }
 }
