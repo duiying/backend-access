@@ -32,15 +32,25 @@ function assembleRoleFormParam(fromUpdate = false)
     return retFromParam;
 }
 
-function renderPermissionSelect(data)
+function renderPermissionSelect(permissionList, role = false)
 {
     var html = '';
 
-    if (data !== false) {
-        var list = data.list;
+    var hadPermissionIdList = [];
+
+    if (role !== false) {
+        for (var i = 0; i < role.permission_list.length; i++) {
+            hadPermissionIdList.push(role.permission_list[i].permission_id);
+        }
+    }
+
+    if (permissionList !== false) {
+        var list = permissionList.list;
 
         for (var i = 0; i < list.length; i++) {
-            html += '<option value="' + list[i].id + '">';
+            html += '<option value="' + list[i].id + '"';
+            if (hadPermissionIdList.includes(list[i].id)) html += ' selected';
+            html += '>';
             html += list[i].name;
             html += '</option>';
         }

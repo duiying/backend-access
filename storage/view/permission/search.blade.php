@@ -47,7 +47,7 @@
     <script type="text/javascript">
         function renderPermissionList()
         {
-            var data = searchPermission();
+            var data = searchPermission({status : 1});
             if (data !== false) {
                 $('#permission-list').html('');
                 var listHtml = '';
