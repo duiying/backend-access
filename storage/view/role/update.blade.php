@@ -25,15 +25,6 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">超级管理员</label>
-                            <div class="col-sm-10">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="admin" name="admin">
-                                    <label class="form-check-label" for="admin"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label">权限</label>
                             <div class="col-sm-10">
                                 <div class="form-group">
@@ -65,13 +56,6 @@
 
         // 渲染表单数据
         renderUpdateForm(data, ['name', 'sort']);
-        if (data !== false) {
-            if (data.admin == 0) {
-                $('input[name=admin]').attr('checked', false);
-            } else {
-                $('input[name=admin]').attr('checked', true);
-            }
-        }
 
         renderPermissionSelect(searchPermission({status : 1}), data)
 

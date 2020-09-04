@@ -6,7 +6,6 @@
 function assembleRoleFormParam(fromUpdate = false)
 {
     var name    = $('input[name=name]').val();
-    var admin   = $('input[name=admin]').is(':checked');
     var sort    = $('input[name=sort]').val();
     var permission_id  = '';
     var permissionOptions = $('#rolePermissionSelect option:selected');
@@ -18,7 +17,6 @@ function assembleRoleFormParam(fromUpdate = false)
 
     var retFromParam = {
         name : name,
-        admin : admin ? 1 : 0,
         sort : sort,
     }
     if (permission_id !== '') {

@@ -26,7 +26,8 @@
                     <th style="width: 50px">ID</th>
                     <th style="width: 50px">排序</th>
                     <th style="width: 50px">名称</th>
-                    <th style="width: 150px">超级管理员</th>
+                    <th style="width: 50px">超级管理员</th>
+                    <th style="width: 150px">权限</th>
                     <th style="width: 150px">操作</th>
                 </tr>
                 </thead>
@@ -47,7 +48,7 @@
     <script type="text/javascript">
         function renderRoleList()
         {
-            var data = searchRole();
+            var data = searchRole({status : 1});
             if (data !== false) {
                 $('#role-list').html('');
                 var listHtml = '';
@@ -61,8 +62,19 @@
                     if (list[i].admin == 1) listHtml += '<span class="label label-primary">是</span>';
                     listHtml += '</td>';
                     listHtml += '<td>';
-                    listHtml += '<a href="/view/role/update?id=' + list[i].id + '"><i class="fas fa-edit"></i></a>';
-                    listHtml += '<a href="javascript:;" class="ml-2" onclick="handleRoleDelete(' + list[i].id + ')"><i class="fas fa-trash"></i></a>';
+                    if (list[i].admin != 1) {
+                        for (var j = 0; j < list[i].permission_list.length; j++) {
+                            listHtml += '<span class="label label-primary ml-1">' + list[i].permission_list[j].name + '</span>';
+                        }
+                    } else {
+                        listHtml += '<span class="label label-success">所有权限</span>';
+                    }
+                    listHtml += '</td>';
+                    listHtml += '<td>';
+                    if (list[i].admin != 1) {
+                        listHtml += '<a href="/view/role/update?id=' + list[i].id + '"><i class="fas fa-edit"></i></a>';
+                        listHtml += '<a href="javascript:;" class="ml-2" onclick="handleRoleDelete(' + list[i].id + ')"><i class="fas fa-trash"></i></a>';
+                    }
                     listHtml += '</td>';
                     listHtml += '</tr>';
                 }
