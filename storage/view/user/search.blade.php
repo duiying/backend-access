@@ -35,18 +35,19 @@
                 <thead>
                 <tr>
                     <th style="width: 50px">ID</th>
+                    <th style="width: 50px">排序</th>
                     <th style="width: 150px">姓名</th>
                     <th style="width: 150px">邮箱</th>
                     <th style="width: 150px">手机号</th>
+                    <th style="width: 150px">职位</th>
+                    <th style="width: 150px">ROOT 管理员</th>
+                    <th style="width: 150px">角色</th>
                     <th style="width: 150px">创建时间</th>
                     <th style="width: 150px">更新时间</th>
-                    <th style="width: 150px">职位</th>
                     <th style="width: 150px">操作</th>
                 </tr>
                 </thead>
                 <tbody id="user-list">
-                <tr>
-                </tr>
                 </tbody>
             </table>
         </div>
@@ -69,10 +70,42 @@
          *
          * @param param
          */
-        function renderUserList(param = {p : DEFAULT_P, size : DEFAULT_SIZE, status : 1})
+        function renderUserList(param = {p : DEFAULT_P, size : DEFAULT_SIZE})
         {
             var data = searchUser(param);
-            renderList('user-list', data, ['id', 'name', 'email', 'mobile', 'ctime', 'mtime', 'position'], {'update' : true, 'delete' : true, 'update_url' : '/view/user/update'})
+            // renderList('user-list', data, ['id', 'name', 'email', 'mobile', 'ctime', 'mtime', 'position'], {'update' : true, 'delete' : true, 'update_url' : '/view/user/update'})
+            if (data !== false) {
+                $('#user-list').html('');
+                var listHtml = '';
+                var list = data.list;
+                for (var i = 0; i < list.length; i++) {
+                    listHtml += '<tr>';
+                    listHtml += '<td>' + list[i].id + '</td>';
+                    listHtml += '<td>' + list[i].sort + '</td>';
+                    listHtml += '<td>' + list[i].name + '</td>';
+                    listHtml += '<td>' + list[i].email + '</td>';
+                    listHtml += '<td>' + list[i].mobile + '</td>';
+                    listHtml += '<td>' + list[i].position + '</td>';
+                    listHtml += '<td>';
+                    if (list[i].root == 1) listHtml += '<span class="label label-success">是</span>';
+                    listHtml += '</td>';
+                    listHtml += '<td>';
+                    for (var j = 0; j < list[i].role_list.length; j++) {
+                        listHtml += '<span class="label label-primary ml-1">' + list[i].role_list[j].name + '</span>';
+                    }
+                    listHtml += '</td>';
+                    listHtml += '<td>' + list[i].ctime + '</td>';
+                    listHtml += '<td>' + list[i].mtime + '</td>';
+                    listHtml += '<td>';
+                    listHtml += '<a href="/view/user/update?id=' + list[i].id + '"><i class="fas fa-edit"></i></a>';
+                    if (list[i].root != 1) {
+                        listHtml += '<a href="javascript:;" class="ml-2" onclick="handleDelete(' + list[i].id + ')"><i class="fas fa-trash"></i></a>';
+                    }
+                    listHtml += '</td>';
+                    listHtml += '</tr>';
+                }
+                $('#user-list').html(listHtml);
+            }
             renderPage(data);
         }
 

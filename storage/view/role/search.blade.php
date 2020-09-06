@@ -48,7 +48,7 @@
     <script type="text/javascript">
         function renderRoleList()
         {
-            var data = searchRole({status : 1});
+            var data = searchRole();
             if (data !== false) {
                 $('#role-list').html('');
                 var listHtml = '';
@@ -59,7 +59,7 @@
                     listHtml += '<td>' + list[i].sort + '</td>';
                     listHtml += '<td>' + list[i].name + '</td>';
                     listHtml += '<td>';
-                    if (list[i].admin == 1) listHtml += '<span class="label label-primary">是</span>';
+                    if (list[i].admin == 1) listHtml += '<span class="label label-success">是</span>';
                     listHtml += '</td>';
                     listHtml += '<td>';
                     if (list[i].admin != 1) {
@@ -67,7 +67,7 @@
                             listHtml += '<span class="label label-primary ml-1">' + list[i].permission_list[j].name + '</span>';
                         }
                     } else {
-                        listHtml += '<span class="label label-success">所有权限</span>';
+                        listHtml += '<span class="label label-primary">所有权限</span>';
                     }
                     listHtml += '</td>';
                     listHtml += '<td>';

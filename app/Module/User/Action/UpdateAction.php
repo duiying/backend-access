@@ -30,7 +30,8 @@ class UpdateAction extends AbstractController
         'email'         => 'required|string',
         'mobile'        => 'required|string',
         'position'      => 'required|string',
-        'password'      => 'required|string'
+        'password'      => 'string',
+        'role_id'       => 'string',
     ];
 
     public function handle(RequestInterface $request, Response $response)

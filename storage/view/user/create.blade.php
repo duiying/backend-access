@@ -17,37 +17,46 @@
                 <form class="form-horizontal" id="user-create" onsubmit="return false;">
                     <div class="card-body">
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">姓名</label>
+                            <label class="col-sm-2 col-form-label">姓名<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
                                 <input type="text" name="name" class="form-control" placeholder="真实姓名">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">手机</label>
+                            <label class="col-sm-2 col-form-label">手机<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
                                 <input type="text" name="mobile" class="form-control" placeholder="手机号">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">邮箱</label>
+                            <label class="col-sm-2 col-form-label">邮箱<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
                                 <input type="email" name="email" class="form-control" placeholder="公司邮箱">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">职位</label>
+                            <label class="col-sm-2 col-form-label">职位<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
                                 <input type="text" name="position" class="form-control" placeholder="职位">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">密码</label>
+                            <label class="col-sm-2 col-form-label">角色</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <select class="duallistbox" multiple="multiple" id="roleSelect">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">密码<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
                                 <input type="password" name="password" class="form-control" placeholder="密码">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">确认密码</label>
+                            <label class="col-sm-2 col-form-label">确认密码<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
                                 <input type="password" name="rePassword" class="form-control" placeholder="确认密码">
                             </div>
@@ -75,6 +84,8 @@
                 }
             }
         }
+
+        renderRoleSelect(searchRole())
     </script>
 @endsection
 

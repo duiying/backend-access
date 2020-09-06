@@ -30,6 +30,7 @@ class CreateAction extends AbstractController
         'mobile'        => 'required|string',
         'position'      => 'required|string',
         'password'      => 'required|string',
+        'role_id'       => 'string',
     ];
 
     public function handle(RequestInterface $request, Response $response)

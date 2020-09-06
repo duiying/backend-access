@@ -10,6 +10,13 @@ function assembleUserFormParam(fromUpdate = false)
     var email       = $('input[name=email]').val();
     var position    = $('input[name=position]').val();
     var password    = $('input[name=password]').val();
+    var role_id  = '';
+    var roleOptions = $('#roleSelect option:selected');
+    if (roleOptions.length > 0) {
+        for (var i = 0; i < roleOptions.length; i++) {
+            role_id += roleOptions[i].value + ',';
+        }
+    }
 
     var retFromParam = {
         name : name,
@@ -17,6 +24,10 @@ function assembleUserFormParam(fromUpdate = false)
         email : email,
         position : position,
         password : password,
+    }
+
+    if (role_id !== '') {
+        retFromParam.role_id = role_id.substr(0, role_id.length - 1);
     }
 
     if (fromUpdate) {
@@ -35,7 +46,6 @@ function assembleUserSearchParam(p)
     var searchParam = {
         p       : DEFAULT_P,
         size    : DEFAULT_SIZE,
-        status  : 1,
     };
     if (p !== 0) searchParam.p = p;
 
@@ -44,4 +54,40 @@ function assembleUserSearchParam(p)
     if (email !== '')       searchParam.email = email;
 
     return searchParam;
+}
+
+function renderRoleSelect(roleList, user = false)
+{
+    // ROOT 用户不允许修改角色
+    if (user !== false && user.root == 1) {
+        $('#roleSelectBlock').css('display', 'none');
+        return;
+    }
+
+    var html = '';
+
+    var hadRoleIdList = [];
+
+    if (user !== false) {
+        for (var i = 0; i < user.role_list.length; i++) {
+            hadRoleIdList.push(user.role_list[i].role_id);
+        }
+    }
+
+    if (roleList !== false) {
+        var list = roleList.list;
+
+        for (var i = 0; i < list.length; i++) {
+            html += '<option value="' + list[i].id + '"';
+            if (hadRoleIdList.includes(list[i].id)) html += ' selected';
+            html += '>';
+            html += list[i].name;
+            html += '</option>';
+        }
+    }
+
+    $('#roleSelect').html(html);
+
+    //Bootstrap Duallistbox
+    $('.duallistbox').bootstrapDualListbox()
 }
