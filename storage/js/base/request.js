@@ -1,8 +1,10 @@
-const BASE_API_URL = 'http://127.0.0.1:9501/';
+const BASE_API_URL = 'http://172.18.4.56:9501/';
 
 request = {
     post : function (url, data = {}) {
         var res = false;
+
+        checkToken(url);
 
         $.ajax({
             type 		: 'POST',
@@ -30,6 +32,8 @@ request = {
     get : function (url, data = {}) {
         var res = false;
 
+        checkToken(url);
+
         $.ajax({
             type 		: 'GET',
             url         : BASE_API_URL + url,
@@ -53,4 +57,20 @@ request = {
 
         return res;
     },
+}
+
+function checkToken(url)
+{
+    // 不需要检查 token 的路由
+    var noCheckUrl = ['v1/user/login', 'view/user/login'];
+    if (noCheckUrl.includes(url)) {
+        return true;
+    }
+
+    // 开始检查 token
+    var token = $.cookie('access_token');
+    if (!token) {
+        // 跳转到登录页
+        location.href = '/view/user/login';
+    }
 }

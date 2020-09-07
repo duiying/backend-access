@@ -58,8 +58,8 @@ function validateParam(id)
         };
         messagesInfo.password = {
             required: "请输入密码！",
-                minlength: "密码最少为 6 位！",
-                maxlength: "密码输入过长！",
+            minlength: "密码最少为 6 位！",
+            maxlength: "密码输入过长！",
         };
         messagesInfo.rePassword = {
             required: "请输入确认密码！",

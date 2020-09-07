@@ -59,3 +59,55 @@ function renderPermissionSelect(permissionList, role = false)
     //Bootstrap Duallistbox
     $('.duallistbox').bootstrapDualListbox()
 }
+
+function renderMenuSelect(menuList)
+{
+    if (menuList !== false) {
+        menuList = menuList.list;
+
+        var menuSelecthtml = '';
+
+        for (var i = 0; i < menuList.length; i++) {
+            menuSelecthtml += '<div class="form-check">';
+            menuSelecthtml += '<input class="form-check-input role-menu-pid-' + menuList[i].id + '" type="checkbox" onclick="menuPidClick(' + menuList[i].id + ')">';
+            menuSelecthtml += '<label class="form-check-label">' + menuList[i].name + '</label>';
+            menuSelecthtml += '</div>';
+
+            for (var j = 0; j < menuList[i].sub_menu_list.length; j++) {
+                menuSelecthtml += '<div class="form-check ml-4">';
+                menuSelecthtml += '<input pid="' + menuList[i].id + '" class="form-check-input" type="checkbox" value="' + menuList[i].sub_menu_list[j].id + '" onclick="menuSubIdClick(this)">';
+                menuSelecthtml += '<label class="form-check-label">' + menuList[i].sub_menu_list[j].name + '</label>';
+                menuSelecthtml += '</div>';
+            }
+        }
+
+        $('#role-menu-select').html(menuSelecthtml);
+    }
+}
+
+/**
+ * 父级菜单点击
+ *
+ * @param pid
+ */
+function menuPidClick(pid)
+{
+    var pidCheckedStatus = $('.role-menu-pid-' + pid).is(':checked');
+    $('input[pid="' + pid + '"]').each(function (index, element) {
+        if (pidCheckedStatus) {
+            if (!$(element).is(':checked')) {
+                $(element).click();
+            }
+        } else {
+            if ($(element).is(':checked')) {
+                $(element).click();
+            }
+        }
+    });
+}
+
+function menuSubIdClick(obj = null)
+{
+    if (obj === null) return;
+    console.log(obj.value);
+}

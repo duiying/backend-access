@@ -20,6 +20,10 @@ function updateUserField(data = {}) {
     return request.post('v1/user/update_field', data);
 }
 
+function userLogin(data = {}) {
+    return request.post('v1/user/login', data);
+}
+
 /******************** 管理员 API end ***********************************************************************************/
 
 /******************** 菜单 API begin ***********************************************************************************/

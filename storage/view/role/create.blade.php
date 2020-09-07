@@ -32,6 +32,14 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">菜单</label>
+                            <div class="col-sm-10">
+                                <div class="form-group" id="role-menu-select">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label">排序（升序）</label>
                             <div class="col-sm-10">
                                 <input type="text" name="sort" class="form-control" placeholder="排序" value="99">
@@ -61,7 +69,9 @@
             }
         }
 
-        renderPermissionSelect(searchPermission({status : 1}))
+        renderPermissionSelect(searchPermission())
+
+        renderMenuSelect(searchMenu());
     </script>
 @endsection
 

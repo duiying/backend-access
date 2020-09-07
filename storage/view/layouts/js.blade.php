@@ -1,6 +1,7 @@
 <!-- jQuery -->
 <script src="/storage/AdminLTE/plugins/jquery/jquery.min.js"></script>
 <script src="/storage/js/base/jquery.pjax.js"></script>
+<script src="/storage/js/base/jquery.cookie.min.js"></script>
 <script src="/storage/js/base/nprogress.js"></script>
 <!-- jquery-validation -->
 <script src="/storage/AdminLTE/plugins/jquery-validation/jquery.validate.min.js"></script>

@@ -69,4 +69,9 @@ class UserLogic
     {
         return $this->passportServiceRpc->findUser($requestData);
     }
+
+    public function login($requestData)
+    {
+        return $this->passportServiceRpc->login($requestData);
+    }
 }

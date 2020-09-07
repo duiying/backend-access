@@ -65,6 +65,15 @@ class PassportServiceRpc extends HttpRPC
         ]);
     }
 
+    public function login($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/user/login',
+            'method'    => Constant::METHOD_POST
+        ]);
+    }
+
     public function searchMenu($requestData)
     {
         return $this->call($requestData, [
