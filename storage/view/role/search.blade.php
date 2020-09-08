@@ -28,6 +28,7 @@
                     <th style="width: 50px">名称</th>
                     <th style="width: 50px">超级管理员</th>
                     <th style="width: 150px">权限</th>
+                    <th style="width: 150px">菜单</th>
                     <th style="width: 150px">操作</th>
                 </tr>
                 </thead>
@@ -68,6 +69,15 @@
                         }
                     } else {
                         listHtml += '<span class="label label-primary">所有权限</span>';
+                    }
+                    listHtml += '</td>';
+                    listHtml += '<td>';
+                    if (list[i].admin != 1) {
+                        for (var j = 0; j < list[i].menu_list.length; j++) {
+                            listHtml += '<span class="label label-primary ml-1">' + list[i].menu_list[j].name + '</span>';
+                        }
+                    } else {
+                        listHtml += '<span class="label label-primary">所有菜单</span>';
                     }
                     listHtml += '</td>';
                     listHtml += '<td>';

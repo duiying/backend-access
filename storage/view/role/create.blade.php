@@ -23,19 +23,19 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">菜单</label>
+                            <div class="col-sm-10">
+                                <div class="form-group" id="role-menu-check">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label">权限</label>
                             <div class="col-sm-10">
                                 <div class="form-group">
                                     <select class="duallistbox" multiple="multiple" id="rolePermissionSelect">
                                     </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">菜单</label>
-                            <div class="col-sm-10">
-                                <div class="form-group" id="role-menu-select">
-
                                 </div>
                             </div>
                         </div>

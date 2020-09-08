@@ -7,11 +7,22 @@ function assembleRoleFormParam(fromUpdate = false)
 {
     var name    = $('input[name=name]').val();
     var sort    = $('input[name=sort]').val();
+
+    // 权限 ID 集合
     var permission_id  = '';
     var permissionOptions = $('#rolePermissionSelect option:selected');
     if (permissionOptions.length > 0) {
         for (var i = 0; i < permissionOptions.length; i++) {
             permission_id += permissionOptions[i].value + ',';
+        }
+    }
+
+    // 菜单 ID 集合
+    var menu_id = '';
+    var menuInputs = $('#role-menu-check .form-check-input:checked');
+    if (menuInputs.length > 0) {
+        for (var i = 0; i < menuInputs.length; i++) {
+            menu_id += menuInputs[i].value + ',';
         }
     }
 
@@ -21,6 +32,9 @@ function assembleRoleFormParam(fromUpdate = false)
     }
     if (permission_id !== '') {
         retFromParam.permission_id = permission_id.substr(0, permission_id.length - 1);
+    }
+    if (menu_id !== '') {
+        retFromParam.menu_id = menu_id.substr(0, menu_id.length - 1);
     }
 
     if (fromUpdate) {
@@ -65,49 +79,21 @@ function renderMenuSelect(menuList)
     if (menuList !== false) {
         menuList = menuList.list;
 
-        var menuSelecthtml = '';
+        var menuCheckhtml = '';
 
         for (var i = 0; i < menuList.length; i++) {
-            menuSelecthtml += '<div class="form-check">';
-            menuSelecthtml += '<input class="form-check-input role-menu-pid-' + menuList[i].id + '" type="checkbox" onclick="menuPidClick(' + menuList[i].id + ')">';
-            menuSelecthtml += '<label class="form-check-label">' + menuList[i].name + '</label>';
-            menuSelecthtml += '</div>';
+            menuCheckhtml += '<div class="form-check">';
+            menuCheckhtml += '<label class="form-check-label"><b>' + menuList[i].name + '</b></label>';
+            menuCheckhtml += '</div>';
 
             for (var j = 0; j < menuList[i].sub_menu_list.length; j++) {
-                menuSelecthtml += '<div class="form-check ml-4">';
-                menuSelecthtml += '<input pid="' + menuList[i].id + '" class="form-check-input" type="checkbox" value="' + menuList[i].sub_menu_list[j].id + '" onclick="menuSubIdClick(this)">';
-                menuSelecthtml += '<label class="form-check-label">' + menuList[i].sub_menu_list[j].name + '</label>';
-                menuSelecthtml += '</div>';
+                menuCheckhtml += '<div class="form-check ml-5">';
+                menuCheckhtml += '<input pid="' + menuList[i].id + '" class="form-check-input" type="checkbox" value="' + menuList[i].sub_menu_list[j].id + '">';
+                menuCheckhtml += '<label class="form-check-label">' + menuList[i].sub_menu_list[j].name + '</label>';
+                menuCheckhtml += '</div>';
             }
         }
 
-        $('#role-menu-select').html(menuSelecthtml);
+        $('#role-menu-check').html(menuCheckhtml);
     }
-}
-
-/**
- * 父级菜单点击
- *
- * @param pid
- */
-function menuPidClick(pid)
-{
-    var pidCheckedStatus = $('.role-menu-pid-' + pid).is(':checked');
-    $('input[pid="' + pid + '"]').each(function (index, element) {
-        if (pidCheckedStatus) {
-            if (!$(element).is(':checked')) {
-                $(element).click();
-            }
-        } else {
-            if ($(element).is(':checked')) {
-                $(element).click();
-            }
-        }
-    });
-}
-
-function menuSubIdClick(obj = null)
-{
-    if (obj === null) return;
-    console.log(obj.value);
 }

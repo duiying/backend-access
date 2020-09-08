@@ -1,4 +1,4 @@
-const BASE_API_URL = 'http://172.18.4.56:9501/';
+const BASE_API_URL = 'http://127.0.0.1:9501/';
 
 request = {
     post : function (url, data = {}) {
