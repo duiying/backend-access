@@ -85,7 +85,7 @@
             }
         }
 
-        renderRoleSelect(searchRole())
+        renderRoleSelect(selectRole())
     </script>
 @endsection
 

@@ -57,7 +57,7 @@
         // 渲染表单数据
         renderUpdateForm(data, ['name', 'sort']);
 
-        renderPermissionSelect(searchPermission({}), data)
+        renderPermissionSelect(selectPermission({}), data)
 
         function handleSubmit()
         {

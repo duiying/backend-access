@@ -81,7 +81,7 @@
         // 渲染表单数据
         renderUpdateForm(data, ['name', 'email', 'mobile', 'position']);
 
-        renderRoleSelect(searchRole(), data)
+        renderRoleSelect(selectRole(), data)
 
         function handleSubmit()
         {

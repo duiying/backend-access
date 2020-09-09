@@ -36,6 +36,10 @@ function searchMenu(data = {}) {
     return request.get('v1/menu/search', data);
 }
 
+function selectMenu(data = {}) {
+    return request.get('v1/menu/select', data);
+}
+
 function createMenu(data = {}) {
     return request.post('v1/menu/create', data);
 }
@@ -60,6 +64,10 @@ function searchPermission(data = {}) {
     return request.get('v1/permission/search', data);
 }
 
+function selectPermission(data = {}) {
+    return request.get('v1/permission/select', data);
+}
+
 function createPermission(data = {}) {
     return request.post('v1/permission/create', data);
 }
@@ -82,6 +90,10 @@ function updatePermissionField(data = {}) {
 
 function searchRole(data = {}) {
     return request.get('v1/role/search', data);
+}
+
+function selectRole(data = {}) {
+    return request.get('v1/role/select', data);
 }
 
 function createRole(data = {}) {

@@ -52,18 +52,21 @@ Router::addGroup('/v1/',function () {
     Router::get('user/menu', Route::decoration('User\Action\MenuAction'));                              // 管理员菜单
 
     Router::get('menu/search', Route::decoration('Menu\Action\SearchAction'));                          // 菜单列表
+    Router::get('menu/select', Route::decoration('Menu\Action\SearchAction'));                          // 菜单选择（创建、更新角色时用）
     Router::post('menu/create', Route::decoration('Menu\Action\CreateAction'));                         // 菜单创建
     Router::post('menu/update', Route::decoration('Menu\Action\UpdateAction'));                         // 菜单更新
     Router::get('menu/find', Route::decoration('Menu\Action\FindAction'));                              // 菜单详情
     Router::post('menu/update_field', Route::decoration('Menu\Action\UpdateFieldAction'));              // 菜单更新字段
 
     Router::get('permission/search', Route::decoration('Permission\Action\SearchAction'));              // 权限列表
+    Router::get('permission/select', Route::decoration('Permission\Action\SearchAction'));              // 权限选择（创建、更新角色时用）
     Router::post('permission/create', Route::decoration('Permission\Action\CreateAction'));             // 权限创建
     Router::post('permission/update', Route::decoration('Permission\Action\UpdateAction'));             // 权限更新
     Router::get('permission/find', Route::decoration('Permission\Action\FindAction'));                  // 权限详情
     Router::post('permission/update_field', Route::decoration('Permission\Action\UpdateFieldAction'));  // 权限更新字段
 
     Router::get('role/search', Route::decoration('Role\Action\SearchAction'));                          // 角色列表
+    Router::get('role/select', Route::decoration('Role\Action\SearchAction'));                          // 角色选择（创建、更新用户时用）
     Router::post('role/create', Route::decoration('Role\Action\CreateAction'));                         // 角色创建
     Router::post('role/update', Route::decoration('Role\Action\UpdateAction'));                         // 角色更新
     Router::get('role/find', Route::decoration('Role\Action\FindAction'));                              // 角色详情

@@ -69,9 +69,9 @@
             }
         }
 
-        renderPermissionSelect(searchPermission())
+        renderPermissionSelect(selectPermission())
 
-        renderMenuSelect(searchMenu());
+        renderMenuSelect(selectMenu());
     </script>
 @endsection
 
