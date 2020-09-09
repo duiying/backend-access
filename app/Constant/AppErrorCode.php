@@ -22,5 +22,10 @@ class AppErrorCode extends AbstractConstants
      * @Message("请求参数错误")
      */
     const REQUEST_PARAMS_INVALID = 10001;
+
+    /**
+     * @Message("请先登录！")
+     */
+    const ACCESS_TOKEN_EMPTY_ERROR = 10002;
     /******************** 公共错误码 end ********************************************************************************/
 }

@@ -45,9 +45,9 @@
     </div>
     <!-- /.card -->
     <script type="text/javascript">
-        function renderPermissionList()
+        function renderPermissionList(param = {})
         {
-            var data = searchPermission({status : 1});
+            var data = searchPermission(param);
             if (data !== false) {
                 $('#permission-list').html('');
                 var listHtml = '';
@@ -75,7 +75,14 @@
             renderPage(data);
         }
 
-       renderPermissionList();
+        renderPermissionList();
+
+        function handleSearch(p = 1)
+        {
+            handleSearchCallback(function () {
+                renderPermissionList({p : p});
+            });
+        }
 
         function handlePermissionDelete(id)
         {

@@ -22,6 +22,14 @@ class PassportServiceRpc extends HttpRPC
         $this->service = env('PASSPORT_SERVICE_URI');
     }
 
+    public function checkUserPermission($requestData)
+    {
+        return $this->call($requestData, [
+            'timeout'   => 1000,
+            'uri'       => 'v1/user/check_permission',
+        ]);
+    }
+
     public function searchUser($requestData)
     {
         return $this->call($requestData, [

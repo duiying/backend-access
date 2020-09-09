@@ -6,12 +6,13 @@ use HyperfPlus\Route\Route;
 use Hyperf\HttpServer\Router\Router;
 use HyperfPlus\Middleware\CorsMiddleware;
 use Hyperf\Validation\Middleware\ValidationMiddleware;
+use App\Middleware\PassportMiddleware;
 use HyperfPlus\Middleware\PjaxMiddleware;
 
 /**
  * 首页
  */
-Router::addRoute(['GET'], '/', 'App\View\Index\Action\IndexAction@index', ['middleware' => [PjaxMiddleware::class]]);
+Router::addRoute(['GET'], '/', 'App\View\Index\Action\IndexAction@index', ['middleware' => [PassportMiddleware::class, PjaxMiddleware::class]]);
 
 /**
  * 视图渲染相关路由
@@ -34,7 +35,7 @@ Router::addGroup('/view/',function () {
     Router::get('role/search','App\View\Role\Action\SearchAction@handle');                   // 角色列表
     Router::get('role/create', 'App\View\Role\Action\CreateAction@handle');                  // 角色创建
     Router::get('role/update','App\View\Role\Action\UpdateAction@handle');                   // 角色更新
-}, ['middleware' => [PjaxMiddleware::class]]);
+}, ['middleware' => [PassportMiddleware::class, PjaxMiddleware::class]]);
 
 /**
  * 接口相关路由
@@ -67,4 +68,4 @@ Router::addGroup('/v1/',function () {
     Router::post('role/update', Route::decoration('Role\Action\UpdateAction'));                         // 角色更新
     Router::get('role/find', Route::decoration('Role\Action\FindAction'));                              // 角色详情
     Router::post('role/update_field', Route::decoration('Role\Action\UpdateFieldAction'));              // 角色更新字段
-}, ['middleware' => [CorsMiddleware::class, ValidationMiddleware::class]]);
+}, ['middleware' => [CorsMiddleware::class, PassportMiddleware::class, ValidationMiddleware::class]]);
