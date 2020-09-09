@@ -4,7 +4,8 @@ request = {
     post : function (url, data = {}) {
         var res = false;
 
-        checkToken(url);
+        var token = checkToken(url);
+        if (token !== '') data.token = token;
 
         $.ajax({
             type 		: 'POST',
@@ -14,7 +15,11 @@ request = {
             async       : false,
             success     : function(resp) {
                 if (resp.code !== 0) {
-                    if (resp.msg !== '') alert.error(resp.msg);
+                    if (resp.msg !== '') {
+                        alert.error(resp.msg);
+                    } else {
+                        alert.error('操作失败，请稍后重试，如果失败多次请联系技术解决！');
+                    }
                     console.log(resp);
                 } else {
                     if (resp.msg !== '') {
@@ -32,7 +37,8 @@ request = {
     get : function (url, data = {}) {
         var res = false;
 
-        checkToken(url);
+        var token = checkToken(url);
+        if (token !== '') data.access_token = token;
 
         $.ajax({
             type 		: 'GET',
@@ -41,7 +47,6 @@ request = {
             dataType    : 'json',
             async       : false,
             success     : function(resp) {
-                console.log(resp)
                 if (resp.code !== 0) {
                     if (resp.msg !== '') {
                         alert.error(resp.msg);
@@ -64,7 +69,7 @@ function checkToken(url)
     // 不需要检查 token 的路由
     var noCheckUrl = ['v1/user/login', 'view/user/login'];
     if (noCheckUrl.includes(url)) {
-        return true;
+        return '';
     }
 
     // 开始检查 token
@@ -73,4 +78,6 @@ function checkToken(url)
         // 跳转到登录页
         location.href = '/view/user/login';
     }
+
+    return token;
 }

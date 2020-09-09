@@ -21,7 +21,7 @@
 
 <script>
     // 渲染菜单数据
-    var menuList = searchMenu();
+    var menuList = getUserMenu();
 
     if (menuList !== false) {
         menuList = menuList.list;

@@ -40,7 +40,6 @@
                     <th style="width: 150px">邮箱</th>
                     <th style="width: 150px">手机号</th>
                     <th style="width: 150px">职位</th>
-                    <th style="width: 150px">ROOT 管理员</th>
                     <th style="width: 150px">角色</th>
                     <th style="width: 150px">创建时间</th>
                     <th style="width: 150px">更新时间</th>
@@ -86,9 +85,6 @@
                     listHtml += '<td>' + list[i].email + '</td>';
                     listHtml += '<td>' + list[i].mobile + '</td>';
                     listHtml += '<td>' + list[i].position + '</td>';
-                    listHtml += '<td>';
-                    if (list[i].root == 1) listHtml += '<span class="label label-success">是</span>';
-                    listHtml += '</td>';
                     listHtml += '<td>';
                     for (var j = 0; j < list[i].role_list.length; j++) {
                         listHtml += '<span class="label label-primary ml-1">' + list[i].role_list[j].name + '</span>';

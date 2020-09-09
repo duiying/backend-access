@@ -37,7 +37,7 @@
                                 <input type="text" name="icon" class="form-control" placeholder="图标，例如：fa fa-bars">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row" id="form-group-url">
                             <label class="col-sm-2 col-form-label">路由<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
                                 <input type="text" name="url" class="form-control" placeholder="路由">
@@ -72,6 +72,9 @@
         // 渲染下拉选择
         if (data !== false) {
             $('select[name=pid] > option[value=' + data.pid + ']').attr('selected', true);
+            if (data.pid != 0) {
+                $('#form-group-url').removeClass('none');
+            }
         }
 
         function handleSubmit()

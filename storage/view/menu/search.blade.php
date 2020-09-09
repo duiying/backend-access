@@ -3,9 +3,6 @@
     <li class="breadcrumb-item active">菜单</li>
 @endsection
 @section('content')
-    <style>
-        .none {display: none;}
-    </style>
     <script src="/storage/js/validate/menu.validate.js"></script>
     <script src="/storage/js/form/menu.form.js"></script>
     <div class="card">
@@ -55,7 +52,7 @@
                     listHtml += '<tr>';
                     listHtml += '<td>' + menuList[i].id + '</td>';
                     listHtml += '<td>' + menuList[i].sort + '</td>';
-                    listHtml += '<td class="menu-down" isFold="1" value="' + menuList[i].id + '"><i class="fas fa-folder-plus mr-1 menu-folder-icon' + menuList[i].id + '"></i>' + menuList[i].name + '</td>';
+                    listHtml += '<td class="menu-down" isFold="0" value="' + menuList[i].id + '"><i class="fas fa-folder-minus mr-1 menu-folder-icon' + menuList[i].id + '"></i>' + menuList[i].name + '</td>';
                     listHtml += '<td>' + '<i class="mr-2 ' + menuList[i].icon + '"></i>' + menuList[i].icon + '</td>';
                     listHtml += '<td>' + menuList[i].url + '</td>';
                     listHtml += '<td>';
@@ -65,12 +62,12 @@
                     listHtml += '</tr>';
 
                     for (var j = 0; j < menuList[i].sub_menu_list.length; j++) {
-                        listHtml += '<tr class="none sub-menu-' + menuList[i].id + '">';
+                        listHtml += '<tr class="sub-menu-' + menuList[i].id + '">';
                         listHtml += '<td>' + menuList[i].sub_menu_list[j].id + '</td>';
                         listHtml += '<td>' + menuList[i].sub_menu_list[j].sort + '</td>';
                         listHtml += '<td><span class="ml-4">' + menuList[i].sub_menu_list[j].name + '</span></td>';
                         listHtml += '<td>' + '<i class="mr-2 ' + menuList[i].sub_menu_list[j].icon + '"></i>' + menuList[i].sub_menu_list[j].icon + '</td>';
-                        listHtml += '<td>' + menuList[i].sub_menu_list[j].url + '</td>';
+                        listHtml += '<td><code>' + menuList[i].sub_menu_list[j].url + '</code></td>';
                         listHtml += '<td>';
                         listHtml += '<a href="/view/menu/update?id=' + menuList[i].sub_menu_list[j].id + '"><i class="fas fa-edit"></i></a>';
                         listHtml += '<a href="javascript:;" class="ml-2" onclick="handleMenuDelete(' + menuList[i].sub_menu_list[j].id + ')"><i class="fas fa-trash"></i></a>';

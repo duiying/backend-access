@@ -8,6 +8,10 @@ function findUser(data = {}) {
     return request.get('v1/user/find', data);
 }
 
+function getUserMenu(data = {}) {
+    return request.get('v1/user/menu', data);
+}
+
 function createUser(data = {}) {
     return request.post('v1/user/create', data);
 }
@@ -92,7 +96,7 @@ function findRole(data = {}) {
     return request.get('v1/role/find', data);
 }
 
-function updateuRoleField(data = {}) {
+function updateRoleField(data = {}) {
     return request.post('v1/role/update_field', data);
 }
 

@@ -15,10 +15,6 @@ function validateMenuParam(id)
                 required: true,
                 maxlength: 50,
             },
-            url: {
-                required: true,
-                maxlength: 50,
-            },
             sort: {
                 range: [1, 999],
                 digits: true,
@@ -37,10 +33,6 @@ function validateMenuParam(id)
             icon: {
                 required: '请输入图标！',
                 maxlength: '图标输入过长！',
-            },
-            url: {
-                required: '请输入路由！',
-                maxlength: '路由输入过长！',
             },
             sort: {
                 range: '请输入 1-999 之间的整数！',

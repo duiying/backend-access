@@ -34,4 +34,13 @@ function renderMenuPidSelect()
     if (pidSelectList !== false) {
         renderSelect('pid-select', pidSelectList.list, 'id', 'name', '<option value="0">根节点</option>')
     }
+    $('#form-group-url').addClass('none');
+    $('#pid-select').change(function () {
+        var pid = $('#pid-select option:selected').val();
+        if (pid == 0) {
+            $('#form-group-url').addClass('none');
+        } else {
+            $('#form-group-url').removeClass('none');
+        }
+    });
 }

@@ -20,6 +20,8 @@
     .select2-container .select2-selection--single {height: 38px;}
     .select2-container--default .select2-selection--single .select2-selection__arrow {height: 38px;}
 
+    .none {display: none;}
+
     code {
         padding: 2px 4px;
         font-size: 90%;

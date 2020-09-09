@@ -1,5 +1,5 @@
 const DEFAULT_P         = 1;
-const DEFAULT_SIZE      = 2;
+const DEFAULT_SIZE      = 20;
 
 function closeModal()
 {

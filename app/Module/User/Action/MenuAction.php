@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Module\Role\Action;
+namespace App\Module\User\Action;
 
-use HyperfPlus\Util\Util;
 use HyperfPlus\Controller\AbstractController;
-use App\Module\Role\Logic\RoleLogic;
+use App\Module\User\Logic\UserLogic;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
 use HyperfPlus\Http\Response;
 use Hyperf\Validation\Contract\ValidatorFactoryInterface;
+use HyperfPlus\Util\Util;
 
-class UpdateFieldAction extends AbstractController
+class MenuAction extends AbstractController
 {
     /**
      * @Inject()
-     * @var RoleLogic
+     * @var UserLogic
      */
     private $logic;
 
@@ -25,8 +25,7 @@ class UpdateFieldAction extends AbstractController
     public $validationFactory;
 
     private $rules = [
-        'id'        => 'required|integer',
-        'status'    => 'integer',
+        'access_token' => 'required|string',
     ];
 
     public function handle(RequestInterface $request, Response $response)
@@ -36,7 +35,7 @@ class UpdateFieldAction extends AbstractController
         $this->validationFactory->make($requestData, $this->rules)->validate();
         $requestData = Util::sanitize($requestData, $this->rules);
 
-        $res = $this->logic->updateField($requestData);
+        $res = $this->logic->getUserMenuList($requestData);
         return $response->success($res);
     }
 }
