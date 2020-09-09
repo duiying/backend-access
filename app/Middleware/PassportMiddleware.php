@@ -54,10 +54,10 @@ class PassportMiddleware
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         // 路由
-        $requestPath    = $this->request->getUri()->getPath();
+        $requestPath = $this->request->getUri()->getPath();
 
         // 不需要检验 access_token 的路由
-        if (in_array($requestPath, $this->noCheckAccessTokenMethod)) $handler->handle($request);
+        if (in_array($requestPath, $this->noCheckAccessTokenMethod)) return $handler->handle($request);
 
         // 根据 access_token 检查用户权限
         $accessToken = $this->request->input('access_token');
