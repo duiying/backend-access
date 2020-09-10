@@ -5,6 +5,7 @@ namespace App\Middleware;
 use App\RPC\HttpRPC\PassportServiceRpc;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
+use Hyperf\Utils\Context;
 use HyperfPlus\Http\Response;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -66,9 +67,11 @@ class PassportMiddleware
         if (empty($accessToken)) return $this->response->error(-1, '请先登录！');
 
         // 检查用户 access_token 以及权限
-        $this->passportServiceRpc->checkUserPermission(['access_token' => $accessToken, 'url' => $requestPath]);
+        $userId = $this->passportServiceRpc->checkUserPermission(['access_token' => $accessToken, 'url' => $requestPath]);
 
-        // 权限校验通过，进入下一步
+        // 在控制器中可以通过 $request->getAttribute('user_id') 获取当前登录的用户 ID
+        $request = $request->withAttribute('user_id', $userId);
+
         return $handler->handle($request);
     }
 }

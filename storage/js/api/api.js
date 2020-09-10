@@ -8,6 +8,10 @@ function findUser(data = {}) {
     return request.get('v1/user/find', data);
 }
 
+function getUserInfo(data = {}) {
+    return request.get('v1/user/get_info', data);
+}
+
 function getUserMenu(data = {}) {
     return request.get('v1/user/menu', data);
 }

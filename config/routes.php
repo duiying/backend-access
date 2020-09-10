@@ -50,6 +50,7 @@ Router::addGroup('/v1/',function () {
     Router::post('user/login', Route::decoration('User\Action\LoginAction'));                           // 管理员登录
     Router::post('user/update_field', Route::decoration('User\Action\UpdateFieldAction'));              // 管理员更新字段
     Router::get('user/menu', Route::decoration('User\Action\MenuAction'));                              // 管理员菜单
+    Router::get('user/get_info', Route::decoration('User\Action\GetUserInfoAction'));                   // 管理员基础信息
 
     Router::get('menu/search', Route::decoration('Menu\Action\SearchAction'));                          // 菜单列表
     Router::get('menu/select', Route::decoration('Menu\Action\SearchAction'));                          // 菜单选择（创建、更新角色时用）
