@@ -25,7 +25,6 @@ class MenuAction extends AbstractController
     public $validationFactory;
 
     private $rules = [
-        'access_token' => 'required|string',
     ];
 
     public function handle(RequestInterface $request, Response $response)
@@ -34,6 +33,7 @@ class MenuAction extends AbstractController
         $requestData = $request->all();
         $this->validationFactory->make($requestData, $this->rules)->validate();
         $requestData = Util::sanitize($requestData, $this->rules);
+        $requestData['user_id'] = $request->getAttribute('user_id');
 
         $res = $this->logic->getUserMenuList($requestData);
         return $response->success($res);
