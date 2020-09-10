@@ -64,7 +64,7 @@ class PassportMiddleware
         $accessToken = $this->request->input('access_token');
         // 请求参数中没有 access_token，尝试从 cookie 中获取 access_token
         if (empty($accessToken)) $accessToken = $this->request->cookie('access_token');
-        if (empty($accessToken)) return $this->response->error(-1, '请先登录！');
+        if (empty($accessToken)) return $this->response->error(403, '请先登录！');
 
         // 检查用户 access_token 以及权限
         $userId = $this->passportServiceRpc->checkUserPermission(['access_token' => $accessToken, 'url' => $requestPath]);

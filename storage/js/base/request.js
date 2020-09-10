@@ -5,7 +5,7 @@ request = {
         var res = false;
 
         var token = checkToken(url);
-        if (token !== '') data.token = token;
+        if (token !== '') data.access_token = token;
 
         $.ajax({
             type 		: 'POST',

@@ -73,3 +73,5 @@ Router::addGroup('/v1/',function () {
     Router::get('role/find', Route::decoration('Role\Action\FindAction'));                              // 角色详情
     Router::post('role/update_field', Route::decoration('Role\Action\UpdateFieldAction'));              // 角色更新字段
 }, ['middleware' => [CorsMiddleware::class, PassportMiddleware::class, ValidationMiddleware::class]]);
+
+Router::addRoute(['POST'], '/v1/user/logout', Route::decoration('User\Action\LogoutAction'), ['middleware' => [ValidationMiddleware::class]]);

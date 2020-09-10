@@ -32,6 +32,10 @@ function userLogin(data = {}) {
     return request.post('v1/user/login', data);
 }
 
+function userLogout(data = {}) {
+    return request.post('v1/user/logout', data);
+}
+
 /******************** 管理员 API end ***********************************************************************************/
 
 /******************** 菜单 API begin ***********************************************************************************/

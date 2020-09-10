@@ -75,6 +75,11 @@ class UserLogic
         return $this->passportServiceRpc->login($requestData);
     }
 
+    public function logout($requestData)
+    {
+        return $this->passportServiceRpc->logout($requestData);
+    }
+
     public function getUserMenuList($requestData)
     {
         return $this->passportServiceRpc->getUserMenuList($requestData);

@@ -32,7 +32,7 @@
 
                 <div class="card-footer">
                     <button type="submit" class="btn btn-default">设置</button>
-                    <button type="submit" class="btn btn-default float-right">退出</button>
+                    <button type="submit" class="btn btn-default float-right" onclick="logout()">退出</button>
                 </div>
             </div>
         </li>
@@ -45,5 +45,19 @@
     if (data !== false) {
         $('.user-name').html(data.name);
         $('.user-position').html(data.position);
+    }
+    
+    function logout()
+    {
+        NProgress.start();
+        var data = userLogout();
+        if (data !== false) {
+            NProgress.done();
+            // 500 毫秒后跳转到登录页
+            setTimeout(function () {
+                location.href = '/view/user/login';
+            }, 500)
+        }
+        NProgress.done();
     }
 </script>
