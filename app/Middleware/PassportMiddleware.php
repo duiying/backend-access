@@ -7,6 +7,7 @@ use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
 use Hyperf\Utils\Context;
 use HyperfPlus\Http\Response;
+use HyperfPlus\Util\Util;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -64,7 +65,14 @@ class PassportMiddleware
         $accessToken = $this->request->input('access_token');
         // 请求参数中没有 access_token，尝试从 cookie 中获取 access_token
         if (empty($accessToken)) $accessToken = $this->request->cookie('access_token');
-        if (empty($accessToken)) return $this->response->error(403, '请先登录！');
+        if (empty($accessToken)) {
+            // 如果是视图渲染，重定向到登录页
+            if ($requestPath === '/' || (Util::contain($requestPath, '/view/') && $requestPath != '/view/user/login')) {
+                return $this->response->redirect('/view/user/login');
+            }
+            // 如果是接口，返回接口响应数据
+            return $this->response->error(403, '请先登录！');
+        }
 
         // 检查用户 access_token 以及权限
         $userId = $this->passportServiceRpc->checkUserPermission(['access_token' => $accessToken, 'url' => $requestPath]);

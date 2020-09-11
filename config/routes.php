@@ -15,7 +15,7 @@ use HyperfPlus\Middleware\PjaxMiddleware;
 Router::addRoute(['GET'], '/', 'App\View\Index\Action\IndexAction@index', ['middleware' => [PassportMiddleware::class, PjaxMiddleware::class]]);
 
 /**
- * 视图渲染相关路由
+ * 视图渲染相关路由（统一由 /view 开头）
  */
 Router::addGroup('/view/',function () {
     Router::get('user/login','App\View\User\Action\LoginAction@handle');                    // 登录页
