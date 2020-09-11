@@ -74,10 +74,17 @@ function renderPermissionSelect(permissionList, role = false)
     $('.duallistbox').bootstrapDualListbox()
 }
 
-function renderMenuSelect(menuList)
+function renderMenuSelect(menuList, role = false)
 {
     if (menuList !== false) {
         menuList = menuList.list;
+
+        roleMenuIdList = [];
+        if (role !== false && role.menu_list.length > 0) {
+            for (var i = 0; i < role.menu_list.length; i++) {
+                roleMenuIdList.push(role.menu_list[i].id);
+            }
+        }
 
         var menuCheckhtml = '';
 
@@ -88,7 +95,11 @@ function renderMenuSelect(menuList)
 
             for (var j = 0; j < menuList[i].sub_menu_list.length; j++) {
                 menuCheckhtml += '<div class="form-check ml-5">';
-                menuCheckhtml += '<input pid="' + menuList[i].id + '" class="form-check-input" type="checkbox" value="' + menuList[i].sub_menu_list[j].id + '">';
+                if (roleMenuIdList.includes(menuList[i].sub_menu_list[j].id)) {
+                    menuCheckhtml += '<input pid="' + menuList[i].id + '" class="form-check-input" type="checkbox" value="' + menuList[i].sub_menu_list[j].id + '" checked>';
+                } else {
+                    menuCheckhtml += '<input pid="' + menuList[i].id + '" class="form-check-input" type="checkbox" value="' + menuList[i].sub_menu_list[j].id + '">';
+                }
                 menuCheckhtml += '<label class="form-check-label">' + menuList[i].sub_menu_list[j].name + '</label>';
                 menuCheckhtml += '</div>';
             }

@@ -25,6 +25,14 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">菜单</label>
+                            <div class="col-sm-10">
+                                <div class="form-group" id="role-menu-check">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label">权限</label>
                             <div class="col-sm-10">
                                 <div class="form-group">
@@ -58,6 +66,7 @@
         renderUpdateForm(data, ['name', 'sort']);
 
         renderPermissionSelect(selectPermission({}), data)
+        renderMenuSelect(selectMenu(), data);
 
         function handleSubmit()
         {
