@@ -74,4 +74,4 @@ Router::addGroup('/v1/',function () {
     Router::post('role/update_field', Route::decoration('Role\Action\UpdateFieldAction'));              // 角色更新字段
 }, ['middleware' => [CorsMiddleware::class, PassportMiddleware::class, ValidationMiddleware::class]]);
 
-Router::addRoute(['POST'], '/v1/user/logout', Route::decoration('User\Action\LogoutAction'), ['middleware' => [ValidationMiddleware::class]]);
+Router::addRoute(['POST'], '/v1/user/logout', Route::decoration('User\Action\LogoutAction'), ['middleware' => [CorsMiddleware::class, ValidationMiddleware::class]]);
