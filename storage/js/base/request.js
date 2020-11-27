@@ -1,5 +1,5 @@
 //const BASE_API_URL = 'http://127.0.0.1:9501/';
-const BASE_API_URL = 'http://api.admin.learner.pythonup.cn/'
+const BASE_API_URL = 'http://api.micro.service.com/'
 
 request = {
     post : function (url, data = {}) {
