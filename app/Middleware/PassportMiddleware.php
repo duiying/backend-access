@@ -80,8 +80,7 @@ class PassportMiddleware
             $userId = $this->passportServiceRpc->checkUserPermission(['access_token' => $accessToken, 'url' => $requestPath]);
         } catch (\Exception $exception) {
             Log::error('权限校验失败！', ['code' => $exception->getCode(), 'msg' => $exception->getMessage()]);
-            // 如果是视图渲染，重定向到登录页；如果是接口，返回接口响应数据
-            return $fromApi ? $this->response->error(403, '请先登录！') : $this->response->redirect('/view/user/login');
+            return $this->response->error($exception->getCode(), $exception->getMessage());
         }
 
         // 在控制器中可以通过 $request->getAttribute('user_id') 获取当前登录的用户 ID
