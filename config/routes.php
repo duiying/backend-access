@@ -39,6 +39,10 @@ Router::addGroup('/view/',function () {
     Router::get('role/search','App\View\Role\Action\SearchAction@handle');                   // 角色列表
     Router::get('role/create', 'App\View\Role\Action\CreateAction@handle');                  // 角色创建
     Router::get('role/update','App\View\Role\Action\UpdateAction@handle');                   // 角色更新
+
+    Router::get('article/search','App\View\Article\Action\SearchAction@handle');             // 文章列表
+    Router::get('article/create', 'App\View\Article\Action\CreateAction@handle');            // 文章创建
+    Router::get('article/update','App\View\Article\Action\UpdateAction@handle');             // 文章更新
 }, ['middleware' => [PassportMiddleware::class, PjaxMiddleware::class]]);
 
 /**

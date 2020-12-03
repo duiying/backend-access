@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="/storage/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 <!-- Bootstrap4 Duallistbox -->
 <link rel="stylesheet" href="/storage/AdminLTE/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+<!-- markdown -->
+<link rel="stylesheet" href="/storage/simplemde-markdown-editor/dist/simplemde.min.css">
 <style>
     /* 修复 select 多选框高度问题 */
     .select2-container .select2-selection--single {height: 38px;}
@@ -48,4 +50,9 @@
     }
     .label-success {background-color: #5cb85c;}
     .label-primary {background-color:#007bff}
+
+    /* 修复 markdown */
+    .CodeMirror .cm-spell-error:not(.cm-url):not(.cm-comment):not(.cm-tag):not(.cm-word) {
+        background: rgba(0,0,0,0);
+    }
 </style>

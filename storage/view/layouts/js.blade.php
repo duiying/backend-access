@@ -17,6 +17,8 @@
 <script src="/storage/AdminLTE/plugins/chart.js/Chart.min.js"></script>
 <!-- Toastr -->
 <script src="/storage/AdminLTE/plugins/toastr/toastr.min.js"></script>
+<!-- markdown -->
+<script src="/storage/simplemde-markdown-editor/dist/simplemde.min.js"></script>
 <!-- Bootstrap4 Duallistbox -->
 <script src="/storage/AdminLTE/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <script src="/storage/js/base/alert.js?r=<?php echo mt_rand(1, 100000000) ?>"></script>

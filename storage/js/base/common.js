@@ -191,3 +191,11 @@ function pjaxToUrl(url)
 {
     $.pjax({ url: url, container: '#pjax-container' });
 }
+
+function getSimpleMDE(id = '')
+{
+    return new SimpleMDE({
+        element: document.getElementById(id),
+        toolbar: ["bold", "italic", "heading-1", "heading-2", "heading-3", "heading-3", "code", "quote", "unordered-list", "ordered-list", "link", "image", "table", "preview", "guide"],
+    });
+}
