@@ -80,6 +80,12 @@ Router::addGroup('/v1/',function () {
     Router::post('role/update', Route::decoration('Role\Action\UpdateAction'));                         // 角色更新
     Router::get('role/find', Route::decoration('Role\Action\FindAction'));                              // 角色详情
     Router::post('role/update_field', Route::decoration('Role\Action\UpdateFieldAction'));              // 角色更新字段
+
+    Router::get('article/search', Route::decoration('Article\Action\SearchAction'));                    // 文章列表
+    Router::post('article/create', Route::decoration('Article\Action\CreateAction'));                   // 文章创建
+    Router::post('article/update', Route::decoration('Article\Action\UpdateAction'));                   // 文章更新
+    Router::get('article/find', Route::decoration('Article\Action\FindAction'));                        // 文章详情
+    Router::post('article/update_field', Route::decoration('Article\Action\UpdateFieldAction'));        // 文章更新字段
 }, ['middleware' => [CorsMiddleware::class, PassportMiddleware::class, ValidationMiddleware::class]]);
 
 Router::addRoute(['POST'], '/v1/user/logout', Route::decoration('User\Action\LogoutAction'), ['middleware' => [CorsMiddleware::class, ValidationMiddleware::class]]);

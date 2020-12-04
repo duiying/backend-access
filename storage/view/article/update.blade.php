@@ -4,8 +4,8 @@
     <li class="breadcrumb-item active">更新</li>
 @endsection
 @section('content')
-    <script src="/storage/js/validate/permission.validate.js"></script>
-    <script src="/storage/js/form/permission.form.js"></script>
+    <script src="/storage/js/validate/article.validate.js"></script>
+    <script src="/storage/js/form/article.form.js"></script>
 
     <input name="id" type="hidden" value="{{ $id }}">
 
@@ -16,19 +16,18 @@
             <div class="card card-info">
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" id="permission-update" onsubmit="return false;">
+                <form class="form-horizontal" id="article-update" onsubmit="return false;">
                     <div class="card-body">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">标题<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
-                                <input type="text" name="name" class="form-control" placeholder="标题">
+                                <input type="text" name="title" class="form-control" placeholder="标题">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">内容<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
-
-                                <textarea type="text" name="url" class="form-control" placeholder="路由（多个路由之间请用英文分号 ; 隔开）"></textarea>
+                                <textarea name="content" class="form-control" id="article-markdown" rows="10"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -50,21 +49,23 @@
     </div>
 
     <script type="text/javascript">
-        var data = findPermission({id : $('input[name=id]').val()});
+        var simplemde = getSimpleMDE("article-markdown");
+
+        var data = findArticle({id : $('input[name=id]').val()});
 
         // 渲染表单数据
-        renderUpdateForm(data, ['name', 'sort']);
+        renderUpdateForm(data, ['title', 'sort']);
         if (data !== false) {
-            $('textarea[name=url]').val(data.url);
+            simplemde.value(data.content);
         }
 
         function handleSubmit()
         {
-            if (validatePermissionParam('permission-update')) {
-                var param   = assemblePermissionFormParam(true)
-                var data    = updatePermission(param)
+            if (validateArticleParam('article-update')) {
+                var param   = assembleArticleFormParam(true)
+                var data    = updateArticle(param)
                 if (data !== false) {
-                    pjaxToUrl('/view/permission/search');
+                    pjaxToUrl('/view/article/search');
                 }
             }
         }

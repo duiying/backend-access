@@ -3,34 +3,40 @@
     <li class="breadcrumb-item active">文章</li>
 @endsection
 @section('content')
-    <style>
-        .none {display: none;}
-    </style>
-    <script src="/storage/js/validate/permission.validate.js"></script>
-    <script src="/storage/js/form/permission.form.js"></script>
+    <script src="/storage/js/validate/article.validate.js"></script>
+    <script src="/storage/js/form/article.form.js"></script>
+
     <div class="card">
         <div class="card-header">
             <form id="user-search" onsubmit="return false;">
                 <div class="row">
+
                     <div class="input-group-append mr-1">
                         <a href="/view/article/create"><button type="button" class="btn btn-block btn-outline-primary"><i class="fas fa-plus"></i></button></a>
+                    </div>
+                    <div class="col-3">
+                        <input type="text" name="name" class="form-control" placeholder="标题或内容">
+                    </div>
+                    <div class="input-group-append ml-1">
+                        <button type="submit" onclick="handleSearch();" class="btn btn-block btn-outline-primary"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
             </form>
         </div>
-
+        <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
             <table class="table table-hover text-nowrap">
                 <thead>
                 <tr>
                     <th style="width: 50px">ID</th>
                     <th style="width: 50px">排序</th>
-                    <th style="width: 50px">名称</th>
-                    <th style="width: 150px">路由</th>
+                    <th style="width: 200px">标题</th>
+                    <th style="width: 150px">创建时间</th>
+                    <th style="width: 150px">更新时间</th>
                     <th style="width: 150px">操作</th>
                 </tr>
                 </thead>
-                <tbody id="permission-list">
+                <tbody id="article-list">
                 </tbody>
             </table>
         </div>
@@ -45,52 +51,59 @@
     </div>
     <!-- /.card -->
     <script type="text/javascript">
-        function renderPermissionList(param = {})
+        // 首次加载页面渲染列表
+        renderArticleList();
+
+        /**
+         * 渲染列表
+         *
+         * @param param
+         */
+        function renderArticleList(param = {})
         {
-            var data = searchPermission(param);
+            var data = searchArticle(param);
             if (data !== false) {
-                $('#permission-list').html('');
+                $('#article-list').html('');
                 var listHtml = '';
                 var list = data.list;
                 for (var i = 0; i < list.length; i++) {
                     listHtml += '<tr>';
                     listHtml += '<td>' + list[i].id + '</td>';
                     listHtml += '<td>' + list[i].sort + '</td>';
-                    listHtml += '<td>' + list[i].name + '</td>';
+                    listHtml += '<td>' + list[i].title + '</td>';
+                    listHtml += '<td>' + list[i].ctime + '</td>';
+                    listHtml += '<td>' + list[i].mtime + '</td>';
                     listHtml += '<td>';
-                    for (var j = 0; j < list[i].url_list.length; j++) {
-                        listHtml += '<code>' + list[i].url_list[j] + '</code>'
-                        listHtml += '<br>';
-                    }
-
-                    listHtml += '</td>';
-                    listHtml += '<td>';
-                    listHtml += '<a href="/view/permission/update?id=' + list[i].id + '"><i class="fas fa-edit"></i></a>';
-                    listHtml += '<a href="javascript:;" class="ml-2" onclick="handlePermissionDelete(' + list[i].id + ')"><i class="fas fa-trash"></i></a>';
+                    listHtml += '<a href="/view/article/update?id=' + list[i].id + '"><i class="fas fa-edit"></i></a>';
+                    listHtml += '<a href="javascript:;" class="ml-2" onclick="handleDelete(' + list[i].id + ')"><i class="fas fa-trash"></i></a>';
                     listHtml += '</td>';
                     listHtml += '</tr>';
                 }
-                $('#permission-list').html(listHtml);
+                $('#article-list').html(listHtml);
             }
             renderPage(data);
         }
 
-        renderPermissionList();
-
+        /**
+         * 搜索处理
+         *
+         * @param p 页码
+         */
         function handleSearch(p = 1)
         {
             handleSearchCallback(function () {
-                renderPermissionList({p : p});
+                var searchParam = assembleArticleSearchParam(p);
+                renderArticleList(searchParam);
             });
         }
 
-        function handlePermissionDelete(id)
+        function handleDelete(id)
         {
             handleDeleteCallback(function () {
                 var param   = {id : id, status : -1}
-                var data    = updatePermissionField(param)
+                var data    = updateArticleField(param)
                 if (data !== false) {
-                    renderPermissionList();
+                    renderArticleList();
                 }
             });
         }

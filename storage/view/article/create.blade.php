@@ -4,8 +4,8 @@
     <li class="breadcrumb-item active">创建</li>
 @endsection
 @section('content')
-    <script src="/storage/js/validate/permission.validate.js"></script>
-    <script src="/storage/js/form/permission.form.js"></script>
+    <script src="/storage/js/validate/article.validate.js"></script>
+    <script src="/storage/js/form/article.form.js"></script>
 
     <div class="row">
         <div class="col-12">
@@ -14,12 +14,12 @@
             <div class="card card-info">
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" id="permission-create" onsubmit="return false;">
+                <form class="form-horizontal" id="article-create" onsubmit="return false;">
                     <div class="card-body">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">标题<span class="text-danger">*</span></label>
                             <div class="col-sm-10">
-                                <input type="text" name="name" class="form-control" placeholder="标题">
+                                <input type="text" name="title" class="form-control" placeholder="标题">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -51,7 +51,13 @@
 
         function handleSubmit()
         {
-            console.log(simplemde.value());
+            if (validateArticleParam('article-create')) {
+                var param   = assembleArticleFormParam()
+                var data    = createArticle(param)
+                if (data !== false) {
+                    pjaxToUrl('/view/article/search');
+                }
+            }
         }
     </script>
 @endsection

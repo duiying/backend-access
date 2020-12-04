@@ -121,3 +121,27 @@ function updateRoleField(data = {}) {
 }
 
 /******************** 角色 API end *************************************************************************************/
+
+/******************** 文章 API begin ***********************************************************************************/
+
+function searchArticle(data = {}) {
+    return request.get('v1/article/search', data);
+}
+
+function createArticle(data = {}) {
+    return request.post('v1/article/create', data);
+}
+
+function updateArticle(data = {}) {
+    return request.post('v1/article/update', data);
+}
+
+function findArticle(data = {}) {
+    return request.get('v1/article/find', data);
+}
+
+function updateArticleField(data = {}) {
+    return request.post('v1/article/update_field', data);
+}
+
+/******************** 文章 API end *************************************************************************************/
