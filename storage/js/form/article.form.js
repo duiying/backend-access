@@ -23,7 +23,7 @@ function assembleArticleFormParam(fromUpdate = false)
 
 function assembleArticleSearchParam(p)
 {
-    var search_words = $('input[name=search_words]').val();
+    var keywords = $('input[name=keywords]').val();
 
     var searchParam = {
         p       : DEFAULT_P,
@@ -31,7 +31,7 @@ function assembleArticleSearchParam(p)
     };
     if (p !== 0) searchParam.p = p;
 
-    if (search_words !== '') searchParam.search_words = search_words;
+    if (keywords !== '') searchParam.keywords = keywords;
 
     return searchParam;
 }

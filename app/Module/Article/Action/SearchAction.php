@@ -29,8 +29,7 @@ class SearchAction extends AbstractController
         'p'             => 'integer|min:1',
         'size'          => 'integer|min:1',
         'id'            => 'integer',
-        'title'         => 'string',
-        'content'       => 'string',
+        'keywords'      => 'string',
         'status'        => 'integer'
     ];
 

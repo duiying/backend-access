@@ -15,7 +15,7 @@
                         <a href="/view/article/create"><button type="button" class="btn btn-block btn-outline-primary"><i class="fas fa-plus"></i></button></a>
                     </div>
                     <div class="col-3">
-                        <input type="text" name="name" class="form-control" placeholder="标题或内容">
+                        <input type="text" name="keywords" class="form-control" placeholder="标题或内容">
                     </div>
                     <div class="input-group-append ml-1">
                         <button type="submit" onclick="handleSearch();" class="btn btn-block btn-outline-primary"><i class="fas fa-search"></i></button>
@@ -24,13 +24,14 @@
             </form>
         </div>
         <!-- /.card-header -->
-        <div class="card-body table-responsive p-0">
-            <table class="table table-hover text-nowrap">
+        <div class="card-body p-0">
+            <table class="table table-hover">
                 <thead>
                 <tr>
                     <th style="width: 50px">ID</th>
                     <th style="width: 50px">排序</th>
                     <th style="width: 200px">标题</th>
+                    <th style="width: 200px">内容</th>
                     <th style="width: 150px">创建时间</th>
                     <th style="width: 150px">更新时间</th>
                     <th style="width: 150px">操作</th>
@@ -67,10 +68,19 @@
                 var listHtml = '';
                 var list = data.list;
                 for (var i = 0; i < list.length; i++) {
-                    listHtml += '<tr>';
+                    listHtml += '<tr class="expandable-body">';
                     listHtml += '<td>' + list[i].id + '</td>';
                     listHtml += '<td>' + list[i].sort + '</td>';
-                    listHtml += '<td>' + list[i].title + '</td>';
+                    if (list[i].highlight_title == '') {
+                        listHtml += '<td>' + cutString(list[i].title, 500) + '</td>';
+                    } else {
+                        listHtml += '<td>' + cutString(list[i].highlight_title, 500) + '</td>';
+                    }
+                    if (list[i].highlight_content == '') {
+                        listHtml += '<td>' + cutString(list[i].content, 500) + '<div></td>';
+                    } else {
+                        listHtml += '<td><p>' + cutString(list[i].highlight_content, 500) + '</p></td>';
+                    }
                     listHtml += '<td>' + list[i].ctime + '</td>';
                     listHtml += '<td>' + list[i].mtime + '</td>';
                     listHtml += '<td>';
