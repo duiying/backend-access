@@ -8,6 +8,7 @@ use HyperfPlus\Middleware\CorsMiddleware;
 use Hyperf\Validation\Middleware\ValidationMiddleware;
 use App\Middleware\PassportMiddleware;
 use HyperfPlus\Middleware\PjaxMiddleware;
+use Hyperf\Tracer\Middleware\TraceMiddleware;
 
 /**
  * 首页
@@ -86,6 +87,6 @@ Router::addGroup('/v1/',function () {
     Router::post('article/update', Route::decoration('Article\Action\UpdateAction'));                   // 文章更新
     Router::get('article/find', Route::decoration('Article\Action\FindAction'));                        // 文章详情
     Router::post('article/update_field', Route::decoration('Article\Action\UpdateFieldAction'));        // 文章更新字段
-}, ['middleware' => [CorsMiddleware::class, PassportMiddleware::class, ValidationMiddleware::class]]);
+}, ['middleware' => [TraceMiddleware::class, CorsMiddleware::class, PassportMiddleware::class, ValidationMiddleware::class]]);
 
-Router::addRoute(['POST'], '/v1/user/logout', Route::decoration('User\Action\LogoutAction'), ['middleware' => [CorsMiddleware::class, ValidationMiddleware::class]]);
+Router::addRoute(['POST'], '/v1/user/logout', Route::decoration('User\Action\LogoutAction'), ['middleware' => [TraceMiddleware::class, CorsMiddleware::class, ValidationMiddleware::class]]);
